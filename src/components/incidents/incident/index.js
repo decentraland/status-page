@@ -84,7 +84,7 @@ const Severity = styled.div`
   transition: 0.3s;
 `;
 
-const Created = styled.div`
+const Date = styled.div`
   font-size: 13px;
   color: #6e6b6b;
   font-weight: bold;
@@ -94,11 +94,18 @@ export default function Incident({ incident }) {
   return (
     <IncidentDiv active={incident.closed_at}>
       <Details>
-        <Created>
-          {moment(incident.reported_at)
+        <Date>
+          Opened {moment(incident.reported_at)
             .format("MMMM Do YYYY, h:mm a")
             .toUpperCase()}
-        </Created>
+        </Date>
+        {(incident.closed_at) ? (
+          <Date>
+            Closed {moment(incident.closed_at)
+              .format("MMMM Do YYYY, h:mm a")
+              .toUpperCase()}
+          </Date>
+         ) : (<span></span>) }
         <Severity severity={incident.severity}>{severities[incident.severity].text}</Severity>
         <Status open={incident.status === 'open'}>
           {incident.status === 'open' ? "Open" : "Closed"}
@@ -108,10 +115,10 @@ export default function Incident({ incident }) {
       <Comment>
         <ReactMarkdown>{incident.description}</ReactMarkdown>
       </Comment>
-      < Comment>Reported by: {incident.modified_by}</Comment>
-      < Comment>Point: {incident.point}</Comment>
-      < Comment>Contact: {incident.contact}</Comment>
-      {(incident.rca_link) ? (< Comment>RCA: {incident.rca_link}</Comment> ) : (<span></span>) }
+      < Comment><b>Reported by:</b> {incident.modified_by}</Comment>
+      < Comment><b>Point:</b> {incident.point}</Comment>
+      < Comment><b>Contact:</b> {incident.contact}</Comment>
+      {(incident.rca_link) ? (< Comment><b>RCA:</b> {incident.rca_link}</Comment> ) : (<span></span>) }
     </IncidentDiv>
   )
 }
