@@ -109,10 +109,10 @@ export default function Incident({ incident }) {
       <Comment>
         <ReactMarkdown>{incident.description}</ReactMarkdown>
       </Comment>
-      < Comment>Reported by: {incident.modified_by}</Comment>
+      < Comment>R   11eported by: {incident.modified_by}</Comment>
       < Comment>Point: {incident.point}</Comment>
       < Comment>Contact: {incident.contact}</Comment>
-      {(incident.rca_link) ? (< Comment>Contact: {incident.contact}</Comment> ) : (<span></span>) }
+      {(incident.rca_link) ? (< Comment>RCA: {incident.rca_link}</Comment> ) : (<span></span>) }
     </IncidentDiv>
   )
 }
