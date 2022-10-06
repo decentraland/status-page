@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Incident from "./incident";
 import { useEffect, useState } from "react";
+import Status from "../status"
 
 const Container = styled.div`
   margin: 32px auto 0 auto;
@@ -9,7 +10,7 @@ const Container = styled.div`
 
 const Title = styled.div`
   padding: 0 16px;
-  font-size: 20px;
+  font-size: 27px;
   margin-bottom: 16px;
 `;
 
@@ -20,21 +21,17 @@ const NoFound = styled.div`
 function fetchPokemon() {
   return window
     // .fetch('https://crashbot.decentraland.systems/list', {
-    .fetch('http://localhost:5000/list', {
+    .fetch('https://crashbot.decentraland.zone/list', {
+    // .fetch('http://localhost:5000/list', {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
       }
     })
     .then(r => {
-      console.log('llegar response')
-      console.log(r)
-      console.log(r.status)
-      console.log(r.statusText)
       return r.json()
     })
     .then(response => {
-      console.log(response)
       return response
     })
 }
@@ -55,13 +52,21 @@ export default function Incidents () {
     closedIncidents = incidents.closed
   }
 
+  console.log('openIncidents')
+  console.log(openIncidents)
 
   return (
     <Container>
+      <Status incidents={incidents}/>
       { incidents ? (
         <>
-          <Title>Open Incidents</Title>
-          <IncidentRows incidents={openIncidents} />
+          {openIncidents.length > 0 ? (
+            <>
+             <Title>Open Incidents</Title>
+             <IncidentRows incidents={openIncidents} />
+            </>
+          ) : (<span />)}
+         
           <Title>Past Incidents</Title>
           <IncidentRows incidents={closedIncidents} />
         </>
@@ -78,7 +83,7 @@ function IncidentRows({ incidents }) {
         <Incident key={incident.id} incident={incident} />
       ))
     ) : (
-      <NoFound>No Incidents found.</NoFound>
+      <NoFound>No incidents found.</NoFound>
     )
   ) 
 }

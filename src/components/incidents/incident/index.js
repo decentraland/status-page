@@ -107,17 +107,11 @@ export default function Incident({ incident }) {
           </Date>
          ) : (<span></span>) }
         <Severity severity={incident.severity}>{severities[incident.severity].text}</Severity>
-        <Status open={incident.status === 'open'}>
-          {incident.status === 'open' ? "Open" : "Closed"}
-        </Status>
       </Details>
-      <Title>DCL-{incident.id} {incident.title}</Title>
+      <Title>{incident.title}</Title>
       <Comment>
         <ReactMarkdown>{incident.description}</ReactMarkdown>
       </Comment>
-      < Comment><b>Reported by:</b> {incident.modified_by}</Comment>
-      < Comment><b>Point:</b> {incident.point}</Comment>
-      < Comment><b>Contact:</b> {incident.contact}</Comment>
       {(incident.rca_link) ? (< Comment><b>RCA:</b> {incident.rca_link}</Comment> ) : (<span></span>) }
     </IncidentDiv>
   )
