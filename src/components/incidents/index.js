@@ -1,9 +1,6 @@
-import React from "react";
 import styled from "styled-components";
 import Incident from "./incident";
-import Skeleton from "./skeleton";
 import { useEffect, useState } from "react";
-import IncidentsResponse from '../types'
 
 const Container = styled.div`
   margin: 32px auto 0 auto;

@@ -21,7 +21,7 @@ function App() {
             activePage="marketplace" 
             leftMenu={
               <>
-                <Menu.Item>Status Page</Menu.Item>                                
+                <Menu.Item>Decentraland Status</Menu.Item>                                
               </> 
             }
         />
