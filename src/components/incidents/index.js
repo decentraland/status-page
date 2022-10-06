@@ -15,13 +15,13 @@ const Title = styled.div`
 `;
 
 const NoFound = styled.div`
-  margin: 0 8px;
+  margin: 0 18px;
 `;
 
 function fetchPokemon() {
   return window
-    // .fetch('https://crashbot.decentraland.systems/list', {
-    .fetch('https://crashbot.decentraland.zone/list', {
+    .fetch('https://crashbot.decentraland.systems/list', {
+    // .fetch('https://crashbot.decentraland.zone/list', {
     // .fetch('http://localhost:5000/list', {
       method: 'GET',
       headers: {

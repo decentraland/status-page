@@ -44,10 +44,7 @@ export default function Status ({ incidents }) {
   let backgroundColour = statuses.operational.backgroundColour
   let message = statuses.operational.message
   if (incidents) {
-    console.log('entra1')
     if (incidents.open && incidents.open.length > 0) {
-      console.log('entra2:')
-      console.log(incidents.open.length)
       backgroundColour = statuses.outage.backgroundColour
       message = statuses.outage.message
     }

@@ -18,7 +18,7 @@ function App() {
     <Container>
       <div className="Page-story-container">
         <Navbar 
-            activePage="marketplace" 
+            activePage="Decentraland" 
             leftMenu={
               <>
                 <Menu.Item>Decentraland Status</Menu.Item>                                
