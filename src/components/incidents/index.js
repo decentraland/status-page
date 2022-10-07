@@ -20,8 +20,8 @@ const NoFound = styled.div`
 
 function fetchPokemon() {
   return window
-    .fetch('https://crashbot.decentraland.systems/list', {
-    // .fetch('https://crashbot.decentraland.zone/list', {
+    // .fetch('https://crashbot.decentraland.systems/list', {
+    .fetch('https://crashbot.decentraland.zone/list', {
     // .fetch('http://localhost:5000/list', {
       method: 'GET',
       headers: {
