@@ -29,14 +29,17 @@ type QueryResult = {
   values: any[]
 }
 
+
 // this needs to be async to be .then() able
 async function transformData(input: PrometheusQuery): Promise<ChartData<"line", any[], string>> {
   return {
     datasets: input.data.result.flatMap((set) => {
-      return {
-        borderColor: "#000",
-        borderWidth: 1,
+      return {        
+        borderWidth: 2,
         pointRadius: 0,
+        fill: true,
+        borderColor: "#ff8258",
+        backgroundColor: "#ff8258",        
         data: set.values.map(([timestamp, valueAsString]) => {
           return { x: timestamp * 1000, y: +valueAsString }
         }),
@@ -58,31 +61,39 @@ export default function Stats() {
 
   console.log({data})
 
-  return (
-    <Line
-      height={50}
-      data={data || {
-        datasets: [],
-        labels: [],
-      }}
-      options={{
-        interaction: {
-          intersect: false,
-        },
-        plugins: {
-          legend: false,
-        } as any,
-        scales: {
-          x: {
-            type: "time",
-            bounds: "data",
-            min: new Date().getTime() - 30 * 86400 * 1000 /* 30 days */,
-            time: {
-              round: "minute",
+  return (      
+        <Line
+          height={50}
+          data={data || {
+            datasets: [],
+            labels: [],            
+          }}
+          options={                        
+            {
+              interaction: {
+                intersect: false,
             },
-          },
-        },
-      }}
-    />
+            plugins: {
+              legend: false,
+              title: {
+                display: true, 
+                text: 'Users Count'
+              }
+            } as any,
+            scales: {
+              x: {
+                type: "time",
+                bounds: "data",
+                min: new Date().getTime() - 30 * 86400 * 1000 /* 30 days */,
+                time: {
+                  round: "minute",
+                },
+              },
+              y: {
+                min: 0
+              }
+            },
+          }}
+        />    
   )
 }

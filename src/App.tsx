@@ -11,6 +11,12 @@ function App() {
     max-width: 1064px;
     margin: 0 auto;
   `
+  const Title = styled.div`
+    padding: 0 16px;
+    font-size: 27px;
+    margin-bottom: 16px;
+  `
+
 
   return (
     <Container>
@@ -25,6 +31,7 @@ function App() {
         />
       </div>
       <Header />
+      <Title>Live Metrics</Title>
       <Chart />
       <Incidents />
       <Footer />
