@@ -1,9 +1,10 @@
 import styled from "styled-components";
+import { IncidentsResponse } from "../types";
 import { statuses } from "./statuses";
 
 const StatusBar = styled.div`
-  background-color: ${(props) =>
-    props.backgroundColour ? props.backgroundColour : "#b1b1b1"};
+  background-color: ${(props: {backgroundColor?: string}) =>
+    props.backgroundColor ? props.backgroundColor : "#b1b1b1"};
   color: white;
   padding: 16px;
   border-radius: 3px;
@@ -21,39 +22,23 @@ const StatusHeader = styled.h2`
   font-weight: normal;
 `;
 
-const Reload = styled.button`
-  background-color: transparent;
-  color: white;
-  text-decoration: underline;
-  border: none;
-  cursor: pointer;
-  text-align: right;
-  padding: 0;
-`;
-
-const Code = styled.code`
-  white-space: pre-wrap;
-  display: block;
-`;
-
 // TODO: change all systems status based on current status of all components
-export default function Status ({ incidents }) {
+export default function Status ({ incidents }: { incidents: IncidentsResponse | null }) {
   // const [status] = useStatus(components);
   // const [timeAgo] = useRefetch(refetch, loading);
 
-  let backgroundColour = statuses.operational.backgroundColour
+  let backgroundColor = statuses.operational.backgroundColor
   let message = statuses.operational.message
   if (incidents) {
     if (incidents.open && incidents.open.length > 0) {
-      backgroundColour = statuses.outage.backgroundColour
+      backgroundColor = statuses.outage.backgroundColor
       message = statuses.outage.message
     }
-
   }
 
   return (
     <>
-      <StatusBar backgroundColour={backgroundColour}>
+      <StatusBar backgroundColor={backgroundColor}>
         <StatusHeader>{message}</StatusHeader>
         {/* <Reload onClick={refetch}>{loading ? "reloading" : timeAgo}</Reload> */}
       </StatusBar>
