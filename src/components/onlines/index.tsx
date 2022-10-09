@@ -51,12 +51,7 @@ async function transformData(input: PrometheusQuery): Promise<ChartData<"line", 
 
 
 async function fetchData() {
-  const res = await fetch("https://public-metrics.decentraland.org/onlineUsers30d", {
-    method: "GET",
-    headers: {
-      "content-type": "application/json",
-    },
-  })
+  const res = await fetch("https://public-metrics.decentraland.org/onlineUsers30d")
   return res.json()  
 }
 
