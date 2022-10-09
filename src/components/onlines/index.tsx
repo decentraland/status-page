@@ -62,7 +62,6 @@ export default function Stats() {
   
   useEffect(() => {
     fetchData()
-      .then(($) => $.json())
       .then(setData)
   }, [])
 
