@@ -77,7 +77,7 @@ export default function Stats() {
               legend: false,
               title: {
                 display: true, 
-                text: 'Users Count'
+                text: 'Concurrent users'
               }
             } as any,
             scales: {
