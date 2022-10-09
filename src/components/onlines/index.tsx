@@ -62,10 +62,11 @@ export default function Stats() {
   
   useEffect(() => {
     fetchData()
-      .then(data => data.json())
       .then(setData)
   }, [])
 
+  console.log(data)
+  
   return (      
         <Line
           height={50}
