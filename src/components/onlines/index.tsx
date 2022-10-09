@@ -49,17 +49,27 @@ async function transformData(input: PrometheusQuery): Promise<ChartData<"line", 
   }
 }
 
-export default function Stats() {
-  const [data, setData] = useState<ChartData<"line", ScatterDataPoint[], string>>()
 
+async function fetchData() {
+  const res = await fetch("https://public-metrics.decentraland.org/onlineUsers30d", {
+    method: "GET",
+    headers: {
+      "content-type": "application/json",
+    },
+  })
+  return res.json()  
+}
+
+
+
+export default function Stats() {
+  const [data, setData] = useState<ChartData<"line", ScatterDataPoint[], string>>()  
+  
   useEffect(() => {
-    fetch("/data.json")
+    fetchData()
       .then(($) => $.json())
-      .then(transformData)
       .then(setData)
   }, [])
-
-  console.log({data})
 
   return (      
         <Line
