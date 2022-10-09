@@ -3,21 +3,9 @@ import Incident from "./incident"
 import { useEffect, useState } from "react"
 import Status from "../status"
 import { IncidentsResponse, IncidentType } from "../types"
+import { Container, Empty, Header, HeaderMenu, Loader } from "decentraland-ui"
 
-const Container = styled.div`
-  margin: 32px auto 0 auto;
-  max-width: 1040px;
-`
-
-const Title = styled.div`
-  padding: 0 16px;
-  font-size: 27px;
-  margin-bottom: 16px;
-`
-
-const NoFound = styled.div`
-  margin: 0 18px;
-`
+const Empty2 = Empty as any
 
 async function fetchStatus() {
   const res = await fetch("https://crashbot.decentraland.systems/list", {
@@ -38,36 +26,41 @@ export default function Incidents() {
 
   return (
     <Container>
-      <Status incidents={incidents} />
+      <HeaderMenu>
+        <HeaderMenu.Left>
+          <Header>Incidents</Header>
+        </HeaderMenu.Left>
+      </HeaderMenu>
       {incidents ? (
         <>
+          <Status incidents={incidents} />
           {incidents.open.length > 0 ? (
             <>
-              <Title>Open Incidents</Title>
+              <Header size="medium">Open incidents</Header>
               <IncidentRows incidents={incidents.open} />
             </>
           ) : (
             <span />
           )}
 
-          <Title>Past Incidents</Title>
           <IncidentRows incidents={incidents.closed} />
         </>
       ) : (
-        <NoFound>Loading incidents.</NoFound>
+        <Loader active size="massive" />
       )}
     </Container>
   )
 }
 
-function IncidentRows({ incidents }: { incidents?: IncidentType[] }) {
+function IncidentRows({ incidents }: { incidents: IncidentType[] }) {
   return incidents && incidents.length > 0 ? (
     <>
+      <Header size="medium">Past incidents</Header>
       {incidents?.map((incident) => (
         <Incident key={incident.id} incident={incident} />
       ))}
     </>
   ) : (
-    <NoFound>No incidents found.</NoFound>
+    <></>
   )
 }
