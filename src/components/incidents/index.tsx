@@ -2,11 +2,12 @@ import Incident from "./incident"
 import { useEffect, useState } from "react"
 import Status from "../status"
 import { IncidentsResponse, IncidentType } from "../types"
+import Chart from "../onlines"
 import { Container, Header, HeaderMenu, Loader } from "decentraland-ui"
 
 async function fetchStatus() {
   const apiKey = process.env.REACT_APP_CRASHBOT_API_KEY ?? ''
-  const res = await fetch("https://crashbot.decentraland.systems/list", {
+  const res = await fetch("https://crashbot.decentraland.zone/list", {
     method: "GET",
     headers: {
       "content-type": "application/json",
@@ -25,23 +26,24 @@ export default function Incidents() {
 
   return (
     <Container>
-      <HeaderMenu>
-        <HeaderMenu.Left>
-          <Header>Incidents</Header>
-        </HeaderMenu.Left>
-      </HeaderMenu>
+    
       {incidents ? (
-        <>
+        <>         
           <Status incidents={incidents} />
           {incidents.open.length > 0 ? (
             <>
+              <HeaderMenu>
+                <HeaderMenu.Left>
+                  <Header>Incidents</Header>
+                </HeaderMenu.Left>
+              </HeaderMenu>
               <Header size="medium">Open incidents</Header>
               <IncidentRows incidents={incidents.open} />
             </>
           ) : (
             <span />
           )}
-
+          <Chart />
           <IncidentRows incidents={incidents.closed} />
         </>
       ) : (
