@@ -1,17 +1,18 @@
-import styled from "styled-components"
 import Incident from "./incident"
 import { useEffect, useState } from "react"
 import Status from "../status"
 import { IncidentsResponse, IncidentType } from "../types"
-import { Container, Empty, Header, HeaderMenu, Loader } from "decentraland-ui"
-
-const Empty2 = Empty as any
+import Chart from "../onlines"
+import { Container, Header, Loader } from "decentraland-ui"
 
 async function fetchStatus() {
-  const res = await fetch("https://crashbot.decentraland.systems/list", {
+  const apiKey = process.env.REACT_APP_CRASHBOT_API_KEY ?? ''
+  const listURL = process.env.REACT_APP_LIST_URL ?? 'https://crashbot.decentraland.systems'
+  const res = await fetch(`${listURL}/list`, {
     method: "GET",
     headers: {
       "content-type": "application/json",
+      "crashbot": apiKey
     },
   })
   return res.json()
@@ -26,24 +27,29 @@ export default function Incidents() {
 
   return (
     <Container>
-      <HeaderMenu>
-        <HeaderMenu.Left>
-          <Header>Incidents</Header>
-        </HeaderMenu.Left>
-      </HeaderMenu>
       {incidents ? (
         <>
           <Status incidents={incidents} />
+          <Chart />
           {incidents.open.length > 0 ? (
             <>
               <Header size="medium">Open incidents</Header>
               <IncidentRows incidents={incidents.open} />
+              
             </>
           ) : (
             <span />
           )}
-
-          <IncidentRows incidents={incidents.closed} />
+          <br/>
+          {incidents.closed.length > 0 ? (
+            <>
+              <Header size="medium">Past incidents</Header>
+              <IncidentRows incidents={incidents.closed} />
+              
+            </>
+          ) : (
+            <span />
+          )}
         </>
       ) : (
         <Loader active size="massive" />
@@ -55,7 +61,6 @@ export default function Incidents() {
 function IncidentRows({ incidents }: { incidents: IncidentType[] }) {
   return incidents && incidents.length > 0 ? (
     <>
-      <Header size="medium">Past incidents</Header>
       {incidents?.map((incident) => (
         <Incident key={incident.id} incident={incident} />
       ))}
