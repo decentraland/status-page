@@ -7,7 +7,7 @@ import { Container, Header, HeaderMenu, Loader } from "decentraland-ui"
 
 async function fetchStatus() {
   const apiKey = process.env.REACT_APP_CRASHBOT_API_KEY ?? ''
-  const res = await fetch("https://crashbot.decentraland.systems/list", {
+  const res = await fetch("https://crashbot.decentraland.system/list", {
     method: "GET",
     headers: {
       "content-type": "application/json",
@@ -40,9 +40,16 @@ export default function Incidents() {
           ) : (
             <span />
           )}
-          <br/>                    
-          <Header size="medium">Past incidents</Header>
-          <IncidentRows incidents={incidents.closed} />
+          <br/>         
+          {incidents.closed.length > 0 ? (
+            <>
+              <Header size="medium">Past incidents</Header>
+              <IncidentRows incidents={incidents.closed} />
+              
+            </>
+          ) : (
+            <span />
+          )}
         </>
       ) : (
         <Loader active size="massive" />
@@ -54,7 +61,6 @@ export default function Incidents() {
 function IncidentRows({ incidents }: { incidents: IncidentType[] }) {
   return incidents && incidents.length > 0 ? (
     <>
-      
       {incidents?.map((incident) => (
         <Incident key={incident.id} incident={incident} />
       ))}
