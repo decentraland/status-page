@@ -1,6 +1,5 @@
 import Menu from "semantic-ui-react/dist/commonjs/collections/Menu"
 import { Container, Footer, Navbar, Page } from "decentraland-ui"
-
 import Incidents from "./components/incidents"
 
 const Page2 = Page as any

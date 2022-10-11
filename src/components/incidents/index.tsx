@@ -26,10 +26,9 @@ export default function Incidents() {
   }, [])
 
   return (
-    <Container>    
-      
+    <Container>
       {incidents ? (
-        <>         
+        <>
           <Status incidents={incidents} />
           <Chart />
           {incidents.open.length > 0 ? (
@@ -41,7 +40,7 @@ export default function Incidents() {
           ) : (
             <span />
           )}
-          <br/>         
+          <br/>
           {incidents.closed.length > 0 ? (
             <>
               <Header size="medium">Past incidents</Header>
