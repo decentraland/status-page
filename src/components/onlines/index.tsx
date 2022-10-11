@@ -78,7 +78,7 @@ export default function Stats() {
         <>
           <HeaderMenu>
             <HeaderMenu.Left>
-              <Header>Live metrics</Header>
+              <Header size="medium">Live metrics</Header>
             </HeaderMenu.Left>
           </HeaderMenu>
           <Line

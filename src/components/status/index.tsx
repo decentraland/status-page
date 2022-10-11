@@ -8,7 +8,7 @@ const StatusBar = styled.div`
   color: white;
   padding: 16px;
   border-radius: 3px;
-  margin-bottom: 32px;
+  margin-bottom: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -17,7 +17,7 @@ const StatusBar = styled.div`
 `;
 
 const StatusHeader = styled.h2`
-  font-size: 20px;
+  font-size: 24px;
   margin: 0;
   font-weight: normal;
 `;
