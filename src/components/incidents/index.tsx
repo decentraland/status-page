@@ -7,7 +7,7 @@ import { Container, Header, HeaderMenu, Loader } from "decentraland-ui"
 async function fetchStatus() {
   const apiKey = process.env.CRASHBOT_API_KEY ?? ''
   console.log(apiKey)
-  const res = await fetch("https://crashbot.decentraland.zone/list", {
+  const res = await fetch("https://crashbot.decentraland.systems/list", {
     method: "GET",
     headers: {
       "content-type": "application/json",
