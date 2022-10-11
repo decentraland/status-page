@@ -19,7 +19,6 @@ async function fetchStatus() {
 export default function Incidents() {
   const [incidents, setIncidents] = useState<IncidentsResponse | null>(null)
 
-  
   useEffect(() => {
     fetchStatus().then(setIncidents)
   }, [])
