@@ -3,11 +3,12 @@ import { useEffect, useState } from "react"
 import Status from "../status"
 import { IncidentsResponse, IncidentType } from "../types"
 import Chart from "../onlines"
-import { Container, Header, HeaderMenu, Loader } from "decentraland-ui"
+import { Container, Header, Loader } from "decentraland-ui"
 
 async function fetchStatus() {
   const apiKey = process.env.REACT_APP_CRASHBOT_API_KEY ?? ''
-  const res = await fetch("https://crashbot.decentraland.system/list", {
+  const listURL = process.env.REACT_APP_LIST_URL ?? 'https://crashbot.decentraland.systems'
+  const res = await fetch(`${listURL}/list`, {
     method: "GET",
     headers: {
       "content-type": "application/json",
