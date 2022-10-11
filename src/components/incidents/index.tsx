@@ -5,8 +5,7 @@ import { IncidentsResponse, IncidentType } from "../types"
 import { Container, Header, HeaderMenu, Loader } from "decentraland-ui"
 
 async function fetchStatus() {
-  const apiKey = process.env.CRASHBOT_API_KEY ?? ''
-  console.log(apiKey)
+  const apiKey = process.env.REACT_APP_CRASHBOT_API_KEY ?? ''
   const res = await fetch("https://crashbot.decentraland.systems/list", {
     method: "GET",
     headers: {
@@ -22,11 +21,6 @@ export default function Incidents() {
 
   
   useEffect(() => {
-    console.log('aslsdfgsdfgsdf ------------------------- ---------------- -------------asdf asdf -')
-    const apiKey = process.env.CRASHBOT_API_KEY ?? ''
-    console.log(process)
-    console.log(process.env)
-    console.log(apiKey)
     fetchStatus().then(setIncidents)
   }, [])
 
