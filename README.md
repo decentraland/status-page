@@ -1,6 +1,6 @@
 # DCL Status Page 
 
-This repository contains the front end of the Decentraland Status page published at https://status.decentraland.org 
+This repository contains the front end for the Decentraland Status page published at https://status.decentraland.org 
 
 ## Build and Run
 
