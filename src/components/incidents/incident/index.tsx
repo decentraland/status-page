@@ -6,7 +6,7 @@ import { IncidentType } from "../../types"
 const IncidentDiv = styled.div`
   transition: 0.3s;
   border-left: 16px solid
-    ${(props: { active: boolean }) => (props.active ? "rgba(177, 177, 177,0.2)" : "rgba(73, 144, 226, 0.2)")};
+    ${(props: { open: boolean }) => (props.open ? "rgba(73, 144, 226, 0.2)" : "rgba(177, 177, 177,0.2)")};
   background-color: white;
   border-radius: 3px;
   padding: 16px;
@@ -82,7 +82,7 @@ const Date = styled.div`
 
 export default function Incident({ incident }: { incident: IncidentType }) {
   return (
-    <IncidentDiv active={!!incident.closed_at}>
+    <IncidentDiv open={incident.status === 'open'}>
       <Details>
         <Date>Opened {moment(incident.reported_at).format("MMMM Do YYYY, h:mm a").toUpperCase()}</Date>
         {incident.closed_at ? (
