@@ -98,7 +98,7 @@ export default function Incident({ incident }: { incident: IncidentType }) {
       </Comment>
       {incident.rca_link ? (
         <Comment>
-          <b>RCA:</b> <a href={incident.rca_link}>{incident.rca_link}</a>
+          <b>RCA:</b> <a href={incident.rca_link} target="_blank">{incident.rca_link}</a>
         </Comment>
       ) : (
         <span></span>
