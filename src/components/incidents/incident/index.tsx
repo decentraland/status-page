@@ -3,6 +3,10 @@ import moment from "moment"
 import ReactMarkdown from "react-markdown"
 import { IncidentType } from "../../types"
 
+import "bootstrap/dist/css/bootstrap.css";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
+
 const IncidentDiv = styled.div`
   transition: 0.3s;
   border-left: 16px solid
@@ -37,31 +41,36 @@ const Comment = styled.div`
   color: #1e1e1e;
 `
 
-const severities: Record<string, { color: string; backgroundColor: string; text: string }> = {
+const severities: Record<string, { color: string; backgroundColor: string; text: string; description: string }> = {
   "sev-1": {
     color: "#42142A",
     backgroundColor: "#FF5F5D",
     text: "SEV-1",
+    description: "Critical issues impacting more than 50% of the users",
   },
   "sev-2": {
     color: "#81201D",
     backgroundColor: "#FF8244",
     text: "SEV-2",
+    description: " Critical system issue actively impacting a limited number of users",
   },
   "sev-3": {
     color: "#81270B",
     backgroundColor: "#FF9722",
     text: "SEV-3",
+    description: "Stability or minor user impacting issue that requires immediate attention",
   },
   "sev-4": {
     color: "#813400",
     backgroundColor: "#FFB600",
     text: "SEV-4",
+    description: "Minor issue requiring action but not affecting the ability to use the platform",
   },
   "sev-5": {
     color: "#814A00",
     backgroundColor: "#FFDD00",
     text: "SEV-5",
+    description: "Cosmetic issues or bugs not affecting the users’ ability to use the platform",
   },
 }
 
@@ -89,8 +98,10 @@ export default function Incident({ incident }: { incident: IncidentType }) {
           <Date>Closed {moment(incident.closed_at).format("MMMM DD YYYY, h:mm a").toUpperCase()} (UTC)</Date>
         ) : (
           <span></span>
-        )}
-        <Severity severity={incident.severity}>{severities[incident.severity].text}</Severity>
+        )}        
+        <OverlayTrigger placement="top" overlay={<Tooltip>{severities[incident.severity].description}</Tooltip>}>
+          <Severity severity={incident.severity}>{severities[incident.severity].text}</Severity>
+        </OverlayTrigger>      
       </Details>
       <Title>{incident.title}</Title>
       <Comment>
