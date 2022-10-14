@@ -100,7 +100,7 @@ export default function Stats() {
                 legend: false,
                 title: {
                   display: true,
-                  text: "Concurrent users",
+                  text: "Online Users",
                 },
               } as any,
               scales: {
