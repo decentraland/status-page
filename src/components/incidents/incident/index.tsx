@@ -84,9 +84,9 @@ export default function Incident({ incident }: { incident: IncidentType }) {
   return (
     <IncidentDiv open={incident.status === 'open'}>
       <Details>
-        <Date>Opened {moment(incident.reported_at).format("MMMM Do YYYY, h:mm a").toUpperCase()}</Date>
+        <Date>Opened {moment(incident.reported_at).format("MMMM DD YYYY, h:mm a").toUpperCase()} (UTC)</Date>
         {incident.closed_at ? (
-          <Date>Closed {moment(incident.closed_at).format("MMMM Do YYYY, h:mm a").toUpperCase()}</Date>
+          <Date>Closed {moment(incident.closed_at).format("MMMM DD YYYY, h:mm a").toUpperCase()} (UTC)</Date>
         ) : (
           <span></span>
         )}
