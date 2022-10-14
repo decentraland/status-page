@@ -15,16 +15,37 @@ async function fetchStatus() {
       "crashbot": apiKey
     },
   })
-  return res.json()
+  return res
 }
 
 export default function Incidents() {
   const [incidents, setIncidents] = useState<IncidentsResponse | null>(null)
+  const [status, setStatus] = useState<number | null>(null)
+  const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
-    fetchStatus().then(setIncidents)
+    fetchStatus()
+      .then((response) => {
+        console.log('response')
+        console.log(response)
+        if (response.ok) {
+          setStatus(response.status)
+          return response.json()
+        }
+        throw response
+      })
+      .then(setIncidents)
+      .catch(err => {
+        console.error(err)
+      })
+      .finally(() => setLoading(false))
   }, [])
 
+  console.log('status')
+  console.log(status)
+
+  console.log('loading')
+  console.log(loading)
   return (
     <Container>
       {incidents ? (
