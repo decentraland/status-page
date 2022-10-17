@@ -17,6 +17,12 @@ const IncidentDiv = styled.div`
   box-shadow: 0px 0px 33px -32px rgba(0, 0, 0, 0.75);
   margin-top: 8px;
 
+  white-space: pre-wrap;       
+  white-space: -moz-pre-wrap;  
+  white-space: -pre-wrap;      
+  white-space: -o-pre-wrap;    
+  word-wrap: break-word;  
+
   :not(:last-child) {
     margin-bottom: 16px;
   }
