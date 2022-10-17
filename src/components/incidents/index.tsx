@@ -41,39 +41,46 @@ export default function Incidents() {
       .finally(() => setLoading(false))
   }, [])
 
-  console.log('status')
-  console.log(status)
+  if (loading) {
+    return <Loader active size="massive" />
+  } else {
+    if (incidents)
+      return IncidentsContainer(incidents)
+    else
+      return IncidentsFailContainer(incidents)
+  }
+}
 
-  console.log('loading')
-  console.log(loading)
+function IncidentsFailContainer(incidents: null) {
+  return <Container>
+    <Status incidents={incidents} />
+    <Chart />
+  </Container>
+}
+
+function IncidentsContainer(incidents: IncidentsResponse) {
   return (
     <Container>
-      {incidents ? (
+      <Status incidents={incidents} />
+      <Chart />
+      {incidents.open.length > 0 ? (
         <>
-          <Status incidents={incidents} />
-          <Chart />
-          {incidents.open.length > 0 ? (
-            <>
-              <Header size="medium">Open incidents</Header>
-              <IncidentRows incidents={incidents.open} />
-              
-            </>
-          ) : (
-            <span />
-          )}
-          <br/>
-          {incidents.closed.length > 0 ? (
-            <>
-              <Header size="medium">Past incidents</Header>
-              <IncidentRows incidents={incidents.closed} />
-              
-            </>
-          ) : (
-            <span />
-          )}
+          <Header size="medium">Open incidents</Header>
+          <IncidentRows incidents={incidents.open} />
+
         </>
       ) : (
-        <Loader active size="massive" />
+        <span />
+      )}
+      <br />
+      {incidents.closed.length > 0 ? (
+        <>
+          <Header size="medium">Past incidents</Header>
+          <IncidentRows incidents={incidents.closed} />
+
+        </>
+      ) : (
+        <span />
       )}
     </Container>
   )

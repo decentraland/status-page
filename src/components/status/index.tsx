@@ -19,21 +19,27 @@ const StatusBar = styled.div`
 const StatusHeader = styled.h2`
   font-size: 24px;
   margin: 0;
-  font-weight: normal;
+  font-weight: 600;
+  color: white;
 `;
 
-// TODO: change all systems status based on current status of all components
 export default function Status ({ incidents }: { incidents: IncidentsResponse | null }) {
-  // const [status] = useStatus(components);
-  // const [timeAgo] = useRefetch(refetch, loading);
-
-  let backgroundColor = statuses.operational.backgroundColor
-  let message = statuses.operational.message
+  let backgroundColor
+  let message
   if (incidents) {
     if (incidents.open && incidents.open.length > 0) {
+      // There are open incidents
       backgroundColor = statuses.outage.backgroundColor
       message = statuses.outage.message
+    } else {
+      // All systems operational
+      backgroundColor = statuses.operational.backgroundColor
+      message = statuses.operational.message
     }
+  } else {
+    // Problem loading incidents
+    backgroundColor = statuses.no_information.backgroundColor
+    message = statuses.no_information.message
   }
 
   return (
