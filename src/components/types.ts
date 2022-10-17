@@ -6,7 +6,7 @@ export type IncidentsResponse = {
 export type IncidentType = {
   id: string
   severity: string
-  open: boolean
+  status: string
   closed_at: string
   reported_at: string
   title: string
