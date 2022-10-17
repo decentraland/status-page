@@ -52,7 +52,7 @@ const severities: Record<string, { color: string; backgroundColor: string; text:
     color: "#42142A",
     backgroundColor: "#FF5F5D",
     text: "SEV-1",
-    description: "Critical issues impacting more than 50% of thegit  users",
+    description: "Critical issues impacting more than 50% of the users",
   },
   "sev-2": {
     color: "#81201D",
