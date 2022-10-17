@@ -15,10 +15,8 @@ function App() {
           </>
         }
       />
-      <Page2 isFullscreen>
-        <Container>          
-          <Incidents />
-        </Container>
+      <Page2 isFullscreen>    
+        <Incidents />
       </Page2>
       <Footer />
     </>
