@@ -17,6 +17,12 @@ const IncidentDiv = styled.div`
   box-shadow: 0px 0px 33px -32px rgba(0, 0, 0, 0.75);
   margin-top: 8px;
 
+  white-space: pre-wrap;       
+  white-space: -moz-pre-wrap;  
+  white-space: -pre-wrap;      
+  white-space: -o-pre-wrap;    
+  word-wrap: break-word;  
+
   :not(:last-child) {
     margin-bottom: 16px;
   }
@@ -46,7 +52,7 @@ const severities: Record<string, { color: string; backgroundColor: string; text:
     color: "#42142A",
     backgroundColor: "#FF5F5D",
     text: "SEV-1",
-    description: "Critical issues impacting more than 50% of the users",
+    description: "Critical issues impacting more than 50% of thegit  users",
   },
   "sev-2": {
     color: "#81201D",
