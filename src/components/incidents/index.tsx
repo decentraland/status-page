@@ -15,44 +15,72 @@ async function fetchStatus() {
       "crashbot": apiKey
     },
   })
-  return res.json()
+  return res
 }
 
 export default function Incidents() {
   const [incidents, setIncidents] = useState<IncidentsResponse | null>(null)
+  const [status, setStatus] = useState<number | null>(null)
+  const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
-    fetchStatus().then(setIncidents)
+    fetchStatus()
+      .then((response) => {
+        console.log('response')
+        console.log(response)
+        if (response.ok) {
+          setStatus(response.status)
+          return response.json()
+        }
+        throw response
+      })
+      .then(setIncidents)
+      .catch(err => {
+        console.error(err)
+      })
+      .finally(() => setLoading(false))
   }, [])
 
+  if (loading) {
+    return <Loader active size="massive" />
+  } else {
+    if (incidents)
+      return IncidentsContainer(incidents)
+    else
+      return IncidentsFailContainer(incidents)
+  }
+}
+
+function IncidentsFailContainer(incidents: null) {
+  return <Container>
+    <Status incidents={incidents} />
+    <Chart />
+  </Container>
+}
+
+function IncidentsContainer(incidents: IncidentsResponse) {
   return (
     <Container>
-      {incidents ? (
+      <Status incidents={incidents} />
+      <Chart />
+      {incidents.open.length > 0 ? (
         <>
-          <Status incidents={incidents} />
-          <Chart />
-          {incidents.open.length > 0 ? (
-            <>
-              <Header size="medium">Open incidents</Header>
-              <IncidentRows incidents={incidents.open} />
-              
-            </>
-          ) : (
-            <span />
-          )}
-          <br/>
-          {incidents.closed.length > 0 ? (
-            <>
-              <Header size="medium">Past incidents</Header>
-              <IncidentRows incidents={incidents.closed} />
-              
-            </>
-          ) : (
-            <span />
-          )}
+          <Header size="medium">Open incidents</Header>
+          <IncidentRows incidents={incidents.open} />
+
         </>
       ) : (
-        <Loader active size="massive" />
+        <span />
+      )}
+      <br />
+      {incidents.closed.length > 0 ? (
+        <>
+          <Header size="medium">Past incidents</Header>
+          <IncidentRows incidents={incidents.closed} />
+
+        </>
+      ) : (
+        <span />
       )}
     </Container>
   )
