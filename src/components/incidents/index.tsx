@@ -26,8 +26,6 @@ export default function Incidents() {
   useEffect(() => {
     fetchStatus()
       .then((response) => {
-        console.log('response')
-        console.log(response)
         if (response.ok) {
           setStatus(response.status)
           return response.json()
