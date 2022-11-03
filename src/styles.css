@@ -1,7 +1,7 @@
-a {
+.rca {
   color: #4183c4 !important;
 }
 
-a:hover {
+.rca:hover {
   text-decoration: underline !important;
 }
