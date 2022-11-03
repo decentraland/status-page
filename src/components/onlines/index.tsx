@@ -14,7 +14,6 @@ import {
 import { useEffect, useState } from "react"
 import { Line } from "react-chartjs-2"
 import "chartjs-adapter-moment"
-import styled from "styled-components"
 import { Container, Header, HeaderMenu } from "decentraland-ui"
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, TimeScale)
 

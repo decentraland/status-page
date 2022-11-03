@@ -1,5 +1,10 @@
+import { Container } from "decentraland-ui";
+import Chart from "./onlines"
+
 export default function Navbar() {
   return (
-    <h1>Metrics</h1>
+    <Container>
+      <Chart />
+    </Container>
   )
 }

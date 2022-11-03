@@ -2,7 +2,6 @@ import Incident from "./incident"
 import { useEffect, useState } from "react"
 import Status from "../status"
 import { IncidentsResponse, IncidentType } from "../types"
-import Chart from "../onlines"
 import { Container, Header, Loader } from "decentraland-ui"
 
 async function fetchStatus() {
@@ -20,14 +19,12 @@ async function fetchStatus() {
 
 export default function Incidents() {
   const [incidents, setIncidents] = useState<IncidentsResponse | null>(null)
-  const [status, setStatus] = useState<number | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
     fetchStatus()
       .then((response) => {
         if (response.ok) {
-          setStatus(response.status)
           return response.json()
         }
         throw response
@@ -52,7 +49,6 @@ export default function Incidents() {
 function IncidentsFailContainer(incidents: null) {
   return <Container>
     <Status incidents={incidents} />
-    <Chart />
   </Container>
 }
 
@@ -60,7 +56,6 @@ function IncidentsContainer(incidents: IncidentsResponse) {
   return (
     <Container>
       <Status incidents={incidents} />
-      <Chart />
       {incidents.open.length > 0 ? (
         <>
           <Header size="medium">Open incidents</Header>
