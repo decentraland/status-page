@@ -71,17 +71,23 @@ export default function Stats() {
     })
   }, [])
 
+  if (data)
+    data.datasets[0].borderColor = '#5388D8'
+
   return (
     <Container>
       {isVisible && (
         <>
           <HeaderMenu>
             <HeaderMenu.Left>
-              <Header size="medium">Live metrics</Header>
+              <Header size="large">Live metrics</Header>
             </HeaderMenu.Left>
           </HeaderMenu>
+          <p>Below you can find live metrics related with the status of the platform.</p>
+          <Header size="medium">Online users</Header>
+          <p>Count of players walking around the Metaverse</p>
           <Line
-            height={50}
+            height={210}
             style={{marginBottom: 32}}
             data={
               data || {
@@ -90,17 +96,13 @@ export default function Stats() {
               }
             }
             options={{
-              aspectRatio: 6,
+              aspectRatio: 3,
               responsive: true,
               interaction: {
                 intersect: false,
               },
               plugins: {
-                legend: false,
-                title: {
-                  display: true,
-                  text: "Online Users",
-                },
+                legend: false
               } as any,
               scales: {
                 x: {
@@ -110,10 +112,14 @@ export default function Stats() {
                   time: {
                     round: "minute",
                   },
+                  grid: {
+                    display: false
+                  }
                 },
                 y: {
                   min: 0,
                 },
+                
               },
             }}
           />
