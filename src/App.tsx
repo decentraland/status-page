@@ -1,8 +1,8 @@
 import { Footer, Page } from "decentraland-ui"
-import Incidents from "./components/incidents"
 import { Route, Routes } from "react-router-dom"
-import Metrics from "./components/Metrics"
+import Metrics from "./pages/Metrics"
 import Navbar from "./components/Navbar"
+import Status from "./pages/Status"
 
 const Page2 = Page as any
 
@@ -13,7 +13,7 @@ function App() {
       <Page2 isFullscreen>
         <div className="container">
           <Routes>
-            <Route path="/" element={<Incidents />} />
+            <Route path="/" element={<Status />} />
             <Route path="/metrics" element={<Metrics />} />
           </Routes>
         </div>
