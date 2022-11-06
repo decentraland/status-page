@@ -2,7 +2,7 @@ import Incident from "./incident"
 import { useEffect, useState } from "react"
 import Status from "../status"
 import { IncidentsResponse, IncidentType } from "../types"
-import { Container, Header, Loader } from "decentraland-ui"
+import { Container, Loader } from "decentraland-ui"
 import Title from "../Title"
 
 
@@ -49,9 +49,11 @@ export default function Incidents() {
 }
 
 function IncidentsFailContainer(incidents: null) {
-  return <Container>
-    <Status incidents={incidents} />
-  </Container>
+  return (
+    <Container>
+      <Status incidents={incidents} />
+    </Container>
+  )
 }
 
 function IncidentsContainer(incidents: IncidentsResponse) {
@@ -62,7 +64,6 @@ function IncidentsContainer(incidents: IncidentsResponse) {
         <>
           <Title title="Open incidents" />
           <IncidentRows incidents={incidents.open} />
-
         </>
       ) : (
         <span />
@@ -72,7 +73,6 @@ function IncidentsContainer(incidents: IncidentsResponse) {
         <>
           <Title title="Past incidents" />
           <IncidentRows incidents={incidents.closed} />
-
         </>
       ) : (
         <span />
