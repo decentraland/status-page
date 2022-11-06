@@ -1,6 +1,5 @@
 import { Footer, Page } from "decentraland-ui"
 import Incidents from "./components/incidents"
-import "./styles.css"
 import { Route, Routes } from "react-router-dom"
 import Metrics from "./components/Metrics"
 import Navbar from "./components/Navbar"

@@ -5,7 +5,7 @@ import {
   TimeScale,
   PointElement,
   LineElement,
-  Title,
+  Title as TitleJS,
   Tooltip,
   Legend,
   ChartData,
@@ -14,8 +14,10 @@ import {
 import { useEffect, useState } from "react"
 import { Line } from "react-chartjs-2"
 import "chartjs-adapter-moment"
-import { Container, Header, HeaderMenu } from "decentraland-ui"
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, TimeScale)
+import { Container} from "decentraland-ui"
+import Title from "../Title"
+import Subtitle from "../Subtitle"
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, TitleJS, Tooltip, Legend, TimeScale)
 
 type PrometheusQuery = {
   status: string
@@ -78,14 +80,8 @@ export default function Stats() {
     <Container>
       {isVisible && (
         <>
-          <HeaderMenu>
-            <HeaderMenu.Left>
-              <Header size="large">Live metrics</Header>
-            </HeaderMenu.Left>
-          </HeaderMenu>
-          <p>Below you can find live metrics related with the status of the platform.</p>
-          <Header size="medium">Online users</Header>
-          <p>Count of players walking around the Metaverse</p>
+          <Title title='Live Metrics' paragraph="Below you can find live metrics related with the status of the platform."/>
+          <Subtitle subtitle='Online users' paragraph="Count of players walking around the Metaverse"/>
           <Line
             height={210}
             style={{marginBottom: 32}}
