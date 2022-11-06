@@ -5,7 +5,7 @@ import {
   TimeScale,
   PointElement,
   LineElement,
-  Title,
+  Title as TitleJS,
   Tooltip,
   Legend,
   ChartData,
@@ -14,9 +14,10 @@ import {
 import { useEffect, useState } from "react"
 import { Line } from "react-chartjs-2"
 import "chartjs-adapter-moment"
-import styled from "styled-components"
-import { Container, Header, HeaderMenu } from "decentraland-ui"
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, TimeScale)
+import { Container} from "decentraland-ui"
+import Title from "../Title"
+import Subtitle from "../Subtitle"
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, TitleJS, Tooltip, Legend, TimeScale)
 
 type PrometheusQuery = {
   status: string
@@ -72,17 +73,17 @@ export default function Stats() {
     })
   }, [])
 
+  if (data)
+    data.datasets[0].borderColor = '#5388D8'
+
   return (
     <Container>
       {isVisible && (
         <>
-          <HeaderMenu>
-            <HeaderMenu.Left>
-              <Header size="medium">Live metrics</Header>
-            </HeaderMenu.Left>
-          </HeaderMenu>
+          <Title title='Live Metrics' paragraph="Below you can find live metrics related with the status of the platform."/>
+          <Subtitle subtitle='Online users' paragraph="Count of players walking around the Metaverse"/>
           <Line
-            height={50}
+            height={210}
             style={{marginBottom: 32}}
             data={
               data || {
@@ -91,17 +92,13 @@ export default function Stats() {
               }
             }
             options={{
-              aspectRatio: 6,
+              aspectRatio: 3,
               responsive: true,
               interaction: {
                 intersect: false,
               },
               plugins: {
-                legend: false,
-                title: {
-                  display: true,
-                  text: "Online Users",
-                },
+                legend: false
               } as any,
               scales: {
                 x: {
@@ -111,10 +108,14 @@ export default function Stats() {
                   time: {
                     round: "minute",
                   },
+                  grid: {
+                    display: false
+                  }
                 },
                 y: {
                   min: 0,
                 },
+                
               },
             }}
           />
