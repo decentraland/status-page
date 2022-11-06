@@ -3,6 +3,8 @@ import { useEffect, useState } from "react"
 import Status from "../status"
 import { IncidentsResponse, IncidentType } from "../types"
 import { Container, Header, Loader } from "decentraland-ui"
+import Title from "../Title"
+
 
 async function fetchStatus() {
   const apiKey = process.env.REACT_APP_CRASHBOT_API_KEY ?? ''
@@ -58,7 +60,7 @@ function IncidentsContainer(incidents: IncidentsResponse) {
       <Status incidents={incidents} />
       {incidents.open.length > 0 ? (
         <>
-          <Header size="medium">Open incidents</Header>
+          <Title title="Open incidents" />
           <IncidentRows incidents={incidents.open} />
 
         </>
@@ -68,7 +70,7 @@ function IncidentsContainer(incidents: IncidentsResponse) {
       <br />
       {incidents.closed.length > 0 ? (
         <>
-          <Header size="medium">Past incidents</Header>
+          <Title title="Past incidents" />
           <IncidentRows incidents={incidents.closed} />
 
         </>
