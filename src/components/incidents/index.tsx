@@ -68,7 +68,7 @@ function OpenIncidentsContainer(incidents: IncidentsResponse) {
       <Status incidents={incidents} />
       {incidents.open.length > 0 ? (
         <>
-          <Title title="Open incidents" />
+          <Title title="Open Incidents" />
           <IncidentRows incidents={incidents.open} />
         </>
       ) : (
@@ -83,7 +83,7 @@ function IncidentHistoryContainer(incidents: IncidentsResponse) {
     <Container>
       {incidents.closed.length > 0 ? (
         <>
-          <Title title="Past incidents" />
+          <Title title="Incidents History" />
           <IncidentRows incidents={incidents.closed} />
         </>
       ) : (
