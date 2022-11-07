@@ -1,11 +1,3 @@
-.rca {
-  color: #4183c4 !important;
-}
-
-.rca:hover {
-  text-decoration: underline !important;
-}
-
 .title {
   margin-bottom: 20px;
 }
@@ -38,4 +30,17 @@
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   color: rgba(0,0,0,0.38);
+}
+
+.incidents .history-button {
+  color: #4183c4;
+  text-decoration: underline;
+}
+
+.incidents .rca {
+  color: #4183c4;
+}
+
+.incidents .rca:hover {
+  text-decoration: underline;
 }

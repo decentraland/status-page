@@ -2,9 +2,9 @@ import Incident from "./incident"
 import { useEffect, useState } from "react"
 import Status from "../status"
 import { IncidentsResponse, IncidentType } from "../types"
-import { Container, Header, Loader } from "decentraland-ui"
+import { Container, Loader } from "decentraland-ui"
 import Title from "../Title"
-
+import { Link } from "react-router-dom"
 
 async function fetchStatus() {
   const apiKey = process.env.REACT_APP_CRASHBOT_API_KEY ?? ''
@@ -19,7 +19,7 @@ async function fetchStatus() {
   return res
 }
 
-export default function Incidents() {
+export default function Incidents({ open }: { open: boolean }) {
   const [incidents, setIncidents] = useState<IncidentsResponse | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
 
@@ -41,38 +41,52 @@ export default function Incidents() {
   if (loading) {
     return <Loader active size="massive" />
   } else {
-    if (incidents)
-      return IncidentsContainer(incidents)
-    else
-      return IncidentsFailContainer(incidents)
+    if (open) {
+      if (incidents)
+        return OpenIncidentsContainer(incidents)
+      else
+        return IncidentsFailContainer(incidents)
+    } else {
+      if (incidents)
+        return IncidentHistoryContainer(incidents)
+      else
+        return <></>
+    }
   }
 }
 
 function IncidentsFailContainer(incidents: null) {
-  return <Container>
-    <Status incidents={incidents} />
-  </Container>
+  return (
+    <Container className="incidents">
+      <Status incidents={incidents} />
+    </Container>
+  )
 }
 
-function IncidentsContainer(incidents: IncidentsResponse) {
+function OpenIncidentsContainer(incidents: IncidentsResponse) {
   return (
-    <Container>
+    <Container className="incidents">
       <Status incidents={incidents} />
       {incidents.open.length > 0 ? (
         <>
-          <Title title="Open incidents" />
+          <Title title="Open Incidents" />
           <IncidentRows incidents={incidents.open} />
-
         </>
       ) : (
         <span />
       )}
-      <br />
+      <Link to="/history" className="history-button" >Incidents History</Link>
+    </Container>
+  )
+}
+
+function IncidentHistoryContainer(incidents: IncidentsResponse) {
+  return (
+    <Container className="incidents">
       {incidents.closed.length > 0 ? (
         <>
-          <Title title="Past incidents" />
+          <Title title="Incidents History" />
           <IncidentRows incidents={incidents.closed} />
-
         </>
       ) : (
         <span />
