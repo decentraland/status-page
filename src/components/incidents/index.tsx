@@ -71,11 +71,11 @@ function OpenIncidentsContainer(incidents: IncidentsResponse) {
         <>
           <Title title="Open Incidents" />
           <IncidentRows incidents={incidents.open} />
-          <Link to="/history" className="history-button" >Incidents History</Link>
         </>
       ) : (
         <span />
       )}
+      <Link to="/history" className="history-button" >Incidents History</Link>
     </Container>
   )
 }
