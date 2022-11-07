@@ -3,16 +3,21 @@
 }
 
 .title h1 {
-  font-family: 'Inter', sans-serif;
-  font-weight: bold;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
   font-size: 28px;
-  color: #524F59;
-  margin-bottom: 5px;
+  line-height: 34px;
+  color: #16141A;
 }
 
 .title p {
-  font-family: 'Roboto', sans-serif;
-  font-size: 12px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 30px;
+  color: #16141A;
 }
 
 .subtitle {
@@ -20,16 +25,21 @@
 }
 
 .subtitle h2 {
-  font-family: 'Roboto', sans-serif;
-  font-size: 16px;
-  color: rgba(0,0,0,0.87);
-  margin-bottom: 0px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 21px;
+  line-height: 30px;
+  color: #16141A;
 }
 
 .subtitle p {
-  font-family: 'Roboto', sans-serif;
-  font-size: 14px;
-  color: rgba(0,0,0,0.38);
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  color: #736E7D;
 }
 
 .incidents .history-button {
