@@ -32,10 +32,6 @@
   color: rgba(0,0,0,0.38);
 }
 
-.incidents {
-  margin-bottom: 20px;
-}
-
 .incidents .history-button {
   color: #4183c4;
   text-decoration: underline;
