@@ -4,6 +4,7 @@ import Status from "../status"
 import { IncidentsResponse, IncidentType } from "../types"
 import { Container, Loader } from "decentraland-ui"
 import Title from "../Title"
+import { Link } from "react-router-dom"
 
 async function fetchStatus() {
   const apiKey = process.env.REACT_APP_CRASHBOT_API_KEY ?? ''
@@ -56,7 +57,7 @@ export default function Incidents({ open }: { open: boolean }) {
 
 function IncidentsFailContainer(incidents: null) {
   return (
-    <Container>
+    <Container className="incidents">
       <Status incidents={incidents} />
     </Container>
   )
@@ -64,12 +65,13 @@ function IncidentsFailContainer(incidents: null) {
 
 function OpenIncidentsContainer(incidents: IncidentsResponse) {
   return (
-    <Container>
+    <Container className="incidents">
       <Status incidents={incidents} />
       {incidents.open.length > 0 ? (
         <>
           <Title title="Open Incidents" />
           <IncidentRows incidents={incidents.open} />
+          <Link to="/history" className="history-button" >Incidents History</Link>
         </>
       ) : (
         <span />
@@ -80,7 +82,7 @@ function OpenIncidentsContainer(incidents: IncidentsResponse) {
 
 function IncidentHistoryContainer(incidents: IncidentsResponse) {
   return (
-    <Container>
+    <Container className="incidents">
       {incidents.closed.length > 0 ? (
         <>
           <Title title="Incidents History" />
