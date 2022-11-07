@@ -1,10 +1,10 @@
 import { Container } from "decentraland-ui";
 import Incidents from "../components/incidents";
 
-export default function Status() {
+export default function History() {
   return (
     <Container>
-      <Incidents open={true} />
+      <Incidents open={false} />
     </Container>
   )
 }
