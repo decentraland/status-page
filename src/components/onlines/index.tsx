@@ -57,70 +57,56 @@ async function fetchData() {
 
 export default function Stats() {
   const [data, setData] = useState<ChartData<"line", ScatterDataPoint[], string>>()
-  const [isVisible, setVisible] = useState<boolean>(shouldBeVisible())
-
-  function shouldBeVisible() {
-    return window.innerWidth > 768
-  }
 
   useEffect(() => {
     fetchData().then(transformData).then(setData)
   }, [])
 
-  useEffect(() => {
-    window.addEventListener("resize", () => {
-      setVisible(shouldBeVisible())
-    })
-  }, [])
 
   if (data)
     data.datasets[0].borderColor = '#5388D8'
 
   return (
     <Container>
-      {isVisible && (
-        <>
-          <Title title='Live Metrics' paragraph="Below you can find live metrics related with the status of the platform."/>
-          <Subtitle subtitle='Online users' paragraph="Count of players walking around the Metaverse"/>
-          <Line
-            height={210}
-            style={{marginBottom: 32}}
-            data={
-              data || {
-                datasets: [],
-                labels: [],
+      <Title title='Live Metrics' paragraph="Below you can find live metrics related with the status of the platform."/>
+      <Subtitle subtitle='Online users' paragraph="Count of players walking around the Metaverse"/>
+      <Line
+        height={210}
+        style={{marginBottom: 32}}
+        data={
+          data || {
+            datasets: [],
+            labels: [],
+          }
+        }
+        options={{
+          aspectRatio: 3,
+          responsive: true,
+          interaction: {
+            intersect: false,
+          },
+          plugins: {
+            legend: false
+          } as any,
+          scales: {
+            x: {
+              type: "time",
+              bounds: "data",
+              min: new Date().getTime() - 21 * 86400 * 1000 /* 21 days */,
+              time: {
+                round: "minute",
+              },
+              grid: {
+                display: false
               }
-            }
-            options={{
-              aspectRatio: 3,
-              responsive: true,
-              interaction: {
-                intersect: false,
-              },
-              plugins: {
-                legend: false
-              } as any,
-              scales: {
-                x: {
-                  type: "time",
-                  bounds: "data",
-                  min: new Date().getTime() - 21 * 86400 * 1000 /* 21 days */,
-                  time: {
-                    round: "minute",
-                  },
-                  grid: {
-                    display: false
-                  }
-                },
-                y: {
-                  min: 0,
-                },
-                
-              },
-            }}
-          />
-        </>
-      )}
+            },
+            y: {
+              min: 0,
+            },
+            
+          },
+        }}
+      />
     </Container>
   )
 }
