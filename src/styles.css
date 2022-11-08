@@ -54,3 +54,24 @@
 .incidents .rca:hover {
   text-decoration: underline;
 }
+
+.catalysts-network::before {
+  content: ' ';
+  width: 12px;
+  height: 7px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: inline-block;
+  margin-right: 8px;
+  filter: var(--brightness);
+  background-image: url('./assets/arrow-down.svg');
+  transition: transform 0.25s ease;
+}
+
+.catalysts-network.caret-down::before {
+  transform: rotateZ(0deg) translateY(-1px);
+}
+
+.catalysts-network.caret-side::before {
+  transform: rotateZ(-90deg) translateY(1px);
+}

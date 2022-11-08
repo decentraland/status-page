@@ -26,7 +26,7 @@ export default function Navbar() {
             <Header
               size="small"
               className={`dcl active-page ${toggle ? 'caret-up' : 'caret-down'}`}
-              onClick={switchToggle()}
+              onClick={switchToggle}
             >
               Decentraland
             </Header>
@@ -35,14 +35,14 @@ export default function Navbar() {
         <div className="dcl navbar-account"></div>
       </div>
       <div className="mobile-menu">
-        <NavBarLink to="/" onClick={switchToggle()}>Decentraland Status</NavBarLink>
-        <NavBarLink to="/metrics" onClick={switchToggle()}>Metrics</NavBarLink>
+        <NavBarLink to="/" onClick={switchToggle}>Decentraland Status</NavBarLink>
+        <NavBarLink to="/metrics" onClick={switchToggle}>Metrics</NavBarLink>
       </div>
     </div>
   )
 
   function switchToggle(): any {
-    return () => setToggle(!toggle)
+    setToggle(!toggle)
   }
 }
 
