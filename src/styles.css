@@ -1,3 +1,7 @@
+ul {
+  list-style-type: none;
+}
+
 .title {
   margin-bottom: 20px;
 }
@@ -81,9 +85,28 @@
 }
 
 .health-info.operational {
-  color: rgba(61, 167, 81, 1);
+  color: #3da751;
 }
 
 .health-info.unavailable {
-  color: rgba(217, 68, 48, 1);
+  color: #d94430;
+}
+
+.health-row div { 
+  display: inline;
+}
+
+.health-row::before {
+  content: ' ';
+  position: relative;
+  top: 3px;
+  width: 19px;
+  height: 19px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: inline-block;
+  margin-right: 8px;
+  filter: brightness(0) saturate(100%) invert(55%) sepia(11%) saturate(2697%) hue-rotate(79deg) brightness(99%) contrast(72%);;
+  background-image: url('./assets/circle-check.svg');
+  transition: transform 0.25s ease;
 }

@@ -7,10 +7,10 @@ const Healthchecks: FC = () => {
     <>
       <Title title='System Status' />
       <ul className="list-group system-status">
-        <li className="list-group-item"><CatalystNetworks /></li>
-        <li className="list-group-item">builder.decentraland.org</li>
-        <li className="list-group-item">market.decentraland.org</li>
-        <li className="list-group-item">synapse.decentraland.org</li>
+        <li className="list-group-item health-row"><CatalystNetworks /></li>
+        <li className="list-group-item health-row">builder.decentraland.org <HealthInfo healthy={true}/></li>
+        <li className="list-group-item health-row">market.decentraland.org <HealthInfo healthy={true}/></li>
+        <li className="list-group-item health-row">synapse.decentraland.org <HealthInfo healthy={true}/></li>
       </ul>
     </>
   );
@@ -18,6 +18,7 @@ const Healthchecks: FC = () => {
 
 const CatalystNetworks: FC = () => {
   const [open, setToggle] = useState<boolean>(false)
+  const [healthy, setHealth] = useState<boolean>(true)
 
   const productiveServers = [
     "peer-ec1.decentraland.org", // DCL - US East 1
@@ -39,11 +40,16 @@ const CatalystNetworks: FC = () => {
 
   return (
     <>
-      <div className={`catalysts-network ${ open ? 'caret-down' : 'caret-side'}`} onClick={switchToggle}>Catalysts Networks</div>
+      <div 
+        className={`catalysts-network ${open ? 'caret-down' : 'caret-side'}`}
+        onClick={switchToggle}>
+          Catalysts Networks
+          <HealthInfo healthy={healthy}/>
+      </div>
       <Collapse in={open}>
         <ul>
           { productiveServers.map( (server) => {
-            return <li><CatalystMonitor server={server} /></li>
+            return <li className='health-row'><CatalystMonitor server={server} /></li>
           })}
         </ul>
       </Collapse>
@@ -75,13 +81,23 @@ const CatalystMonitor: FC<CatalystMonitorProps> = ({server}) => {
 
   return (
     <>
-      <div>
+      <div >
         {server}
-        <span className={`health-info ${healthy ? 'operational' : 'unavailable'}`}>
-          {healthy ? 'Operational' : 'Unavailable'}
-        </span>
+        { !loading ? <HealthInfo healthy={healthy}/> : <></> } 
       </div>
     </>
+  )
+}
+
+interface HealthInfoProps {
+  healthy: boolean | undefined
+}
+
+const HealthInfo: FC<HealthInfoProps> = ({healthy}) => {
+  return (
+    <span className={`health-info ${healthy ? 'operational' : 'unavailable'}`}>
+      {healthy ? 'Operational' : 'Unavailable'}
+    </span>
   )
 }
 
