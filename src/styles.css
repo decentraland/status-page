@@ -75,3 +75,15 @@
 .catalysts-network.caret-side::before {
   transform: rotateZ(-90deg) translateY(1px);
 }
+
+.health-info {
+  float: right;
+}
+
+.health-info.operational {
+  color: rgba(61, 167, 81, 1);
+}
+
+.health-info.unavailable {
+  color: rgba(217, 68, 48, 1);
+}

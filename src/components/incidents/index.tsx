@@ -32,9 +32,7 @@ export default function Incidents({ open }: { open: boolean }) {
         throw response
       })
       .then(setIncidents)
-      .catch(err => {
-        console.error(err)
-      })
+      .catch(console.error)
       .finally(() => setLoading(false))
   }, [])
 
