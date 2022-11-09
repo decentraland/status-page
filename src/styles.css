@@ -62,7 +62,7 @@ ul {
 .catalysts-network::before {
   content: ' ';
   width: 12px;
-  height: 7px;
+  height: 9px;
   background-size: contain;
   background-repeat: no-repeat;
   display: inline-block;
@@ -92,14 +92,20 @@ ul {
   color: #d94430;
 }
 
+.health-row {
+  padding-top: 10px;
+  padding-bottom: 15px;
+}
+
 .health-row div { 
   display: inline;
+  padding: 5px;
 }
 
 .health-row::before {
   content: ' ';
   position: relative;
-  top: 3px;
+  top: 4px;
   width: 19px;
   height: 19px;
   background-size: contain;
@@ -109,4 +115,12 @@ ul {
   filter: brightness(0) saturate(100%) invert(55%) sepia(11%) saturate(2697%) hue-rotate(79deg) brightness(99%) contrast(72%);;
   background-image: url('./assets/circle-check.svg');
   transition: transform 0.25s ease;
+}
+
+.health-row .collapse > :first-child {
+  padding-top: 25px;
+}
+
+.health-row .collapse > :last-child {
+  padding-bottom: 0px;
 }
