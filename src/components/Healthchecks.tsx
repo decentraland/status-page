@@ -49,7 +49,7 @@ const CatalystNetworks: FC = () => {
       <Collapse in={open}>
         <ul>
           { productiveServers.map( (server) => {
-            return <li className='health-row'><CatalystMonitor server={server} /></li>
+            return <CatalystMonitor server={server} />
           })}
         </ul>
       </Collapse>
@@ -68,7 +68,6 @@ const CatalystMonitor: FC<CatalystMonitorProps> = ({server}) => {
   function getServerHealth() {
     fetch(`https://${server}/about`)
       .then((res) => {
-        console.log(res)
         setHealth(res.status === 200)
       })
       .catch(console.log)
@@ -79,13 +78,22 @@ const CatalystMonitor: FC<CatalystMonitorProps> = ({server}) => {
     getServerHealth()
   })
 
+  // Update row class when finish loading
+  let rowClass = 'health-row'
+  if (!loading) {
+    if (healthy)
+      rowClass += ' healthy'
+    else
+      rowClass += ' unhealthy'
+  }
+
   return (
-    <>
+    <li className={rowClass}>
       <div >
         {server}
         { !loading ? <HealthInfo healthy={healthy}/> : <></> } 
       </div>
-    </>
+    </li>
   )
 }
 

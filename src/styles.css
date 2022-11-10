@@ -95,6 +95,7 @@ ul {
 .health-row {
   padding-top: 10px;
   padding-bottom: 15px;
+  font-weight: 600;
 }
 
 .health-row div { 
@@ -112,9 +113,17 @@ ul {
   background-repeat: no-repeat;
   display: inline-block;
   margin-right: 8px;
+  transition: transform 0.25s ease;
+}
+
+.health-row.healthy::before {
   filter: brightness(0) saturate(100%) invert(55%) sepia(11%) saturate(2697%) hue-rotate(79deg) brightness(99%) contrast(72%);;
   background-image: url('./assets/circle-check.svg');
-  transition: transform 0.25s ease;
+}
+
+.health-row.unhealthy::before {
+  filter: brightness(0) saturate(100%) invert(51%) sepia(96%) saturate(5466%) hue-rotate(347deg) brightness(91%) contrast(85%);
+  background-image: url('./assets/circle-xmark.svg');
 }
 
 .health-row .collapse > :first-child {
