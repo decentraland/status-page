@@ -46,16 +46,16 @@ class Monitor extends Component<MonitorProps, MonitorState> {
     let rowClass = 'health-row'
     if (!this.state.loading) {
       if (this.state.healthy)
-        rowClass += ' healthy'
+        rowClass += ' operational'
       else
-        rowClass += ' unhealthy'
+        rowClass += ' unavailable'
     }
 
     return (
       <li className={rowClass}>
         <div >
           {this.props.server}
-          { !this.state.loading ? <HealthInfo healthy={this.state.healthy}/> : <></> } 
+          { !this.state.loading ? <HealthInfo status={this.state.healthy ? 'operational' : 'unavailable'}/> : <></> } 
         </div>
       </li>
     )

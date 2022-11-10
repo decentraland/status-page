@@ -8,10 +8,10 @@ const Healthchecks: FC = () => {
     <>
       <Title title='System Status' />
       <ul className="list-group system-status">
-        <li className="list-group-item health-row"><CatalystNetworks /></li>
-        <li className="list-group-item health-row">builder.decentraland.org <HealthInfo healthy={true}/></li>
-        <li className="list-group-item health-row">market.decentraland.org <HealthInfo healthy={true}/></li>
-        <li className="list-group-item health-row">synapse.decentraland.org <HealthInfo healthy={true}/></li>
+        <CatalystNetworks />
+        <li className="list-group-item health-row">builder.decentraland.org <HealthInfo status='operational'/></li>
+        <li className="list-group-item health-row">market.decentraland.org <HealthInfo status='operational'/></li>
+        <li className="list-group-item health-row">synapse.decentraland.org <HealthInfo status='operational'/></li>
       </ul>
     </>
   );

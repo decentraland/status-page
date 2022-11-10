@@ -1,13 +1,19 @@
 import { FC } from "react"
 
 interface HealthInfoProps {
-  healthy: boolean | undefined
+  status: string
 }
 
-export const HealthInfo: FC<HealthInfoProps> = ({healthy}) => {
+const statusesText: Record<string, string> = {
+  'operational': 'Operational',
+  'degraded': 'System Degraded',
+  'unavailable': 'Unavailable'
+}
+
+export const HealthInfo: FC<HealthInfoProps> = ({status}) => {
   return (
-    <span className={`health-info ${healthy ? 'operational' : 'unavailable'}`}>
-      {healthy ? 'Operational' : 'Unavailable'}
+    <span className={`health-info ${status}`}>
+      {statusesText[status]}
     </span>
   )
 }
