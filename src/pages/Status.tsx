@@ -1,5 +1,5 @@
 import { Container } from "decentraland-ui";
-import Healthchecks from "../components/Healthchecks";
+import Healthchecks from "../components/healthchecks/Healthchecks";
 import Incidents from "../components/incidents";
 
 export default function Status() {
