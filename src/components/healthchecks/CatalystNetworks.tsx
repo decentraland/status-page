@@ -1,4 +1,4 @@
-import { FC, useState, createRef, useEffect, useRef } from "react"
+import { FC, useState, useEffect, useRef } from "react"
 import { Collapse } from "react-bootstrap"
 import { HealthInfo } from "./HealthInfo"
 import Monitor from "./Monitor"
@@ -26,46 +26,45 @@ export const CatalystNetworks: FC = () => {
     setToggle(!open)
   }
 
-  
+  function serverFinishedLoading(server: string, healthy: boolean) {
+    setLoadingBasedOnCatalysts()
+  }
+
+  function setLoadingBasedOnCatalysts() {
+    if (loading) {
+      let stillLoading = false
+      productiveServersRefs.forEach((ref, server) => {
+        const monitorLoading = ref.current?.state.loading ?? true
+        stillLoading = stillLoading || monitorLoading
+      })
+      setLoading(stillLoading)
+    }
+  }
 
   useEffect(() => {
-    // Check if every catalyst finished loading
-    function setLoadingBasedOnCatalysts() {
-      if (loading) {
-        let stillLoading = false
-        productiveServersRefs.forEach((ref, server) => {
-          const serverLoading = ref.current?.state.loading ?? true
-          stillLoading = stillLoading || serverLoading
-        })
-        setLoading(stillLoading)
-      }
-    }
-
     // Returns the number of unavailable catalysts
     function getNumberOfUnavailableCatalysts() {
       let unavailable = 0
-      productiveServersRefs.forEach((ref, server) => {
-        console.log(`server: ${server} is healthy ${ref.current?.state.healthy}`)
+      productiveServersRefs.forEach((ref) => {
         if (!ref.current?.state.healthy)
           unavailable++
       })
       return unavailable
     }
     
-    setLoadingBasedOnCatalysts()
+    // Check if every catalyst finished loading
     if (!loading) {
       const unavailableCatalysts = getNumberOfUnavailableCatalysts()
       if (unavailableCatalysts === 0)
-      setStatus('operational')
+        setStatus('operational')
       else if (unavailableCatalysts < 3)
-      setStatus('degraded')
+        setStatus('degraded')
       else
-      setStatus('unavailable')
+        setStatus('unavailable')
     }
-  }, [loading, productiveServersRefs])
-
-  console.log(`master loading: ${loading}`)
+  }, [loading])
   
+  // Set row css class depending on overall status
   let rowClass = 'list-group-item health-row'
   if(status)
     rowClass += ` ${status}`
@@ -81,7 +80,7 @@ export const CatalystNetworks: FC = () => {
       <Collapse in={open}>
         <ul>
           { Array.from(productiveServersRefs.entries()).map( ([server, ref]) => {
-            return <Monitor server={server} ref={ref} />
+            return <Monitor server={server} finishLoading={serverFinishedLoading} ref={ref} />
           })}
         </ul>
       </Collapse>

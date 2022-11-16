@@ -1,12 +1,12 @@
-import { RefObject, Component } from "react"
+import { Component } from "react"
 import { HealthInfo } from "./HealthInfo"
 
 interface MonitorProps {
   server: string,
-  ref?: RefObject<any>
+  finishLoading: (server: string, healthy: boolean) => void
 }
 
-interface MonitorState {
+export interface MonitorState {
   healthy: boolean,
   loading: boolean
 }
@@ -34,6 +34,7 @@ class Monitor extends Component<MonitorProps, MonitorState> {
           ...this.state,
           loading: false
         })
+        this.props.finishLoading(this.props.server, this.state.healthy)
       })
   }
 
