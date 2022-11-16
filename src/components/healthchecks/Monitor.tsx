@@ -2,8 +2,10 @@ import { Component } from "react"
 import { HealthInfo } from "./HealthInfo"
 
 interface MonitorProps {
-  server: string,
-  finishLoading: (server: string, healthy: boolean) => void
+  url: string,
+  name: string
+  finishLoading?: () => void
+  isCatalyst?: boolean
 }
 
 export interface MonitorState {
@@ -21,7 +23,7 @@ class Monitor extends Component<MonitorProps, MonitorState> {
   }
 
   async getServerHealth() {
-    fetch(`https://${this.props.server}/about`)
+    fetch(this.props.url)
       .then((res) => {
         this.setState({
           ...this.state,
@@ -34,7 +36,8 @@ class Monitor extends Component<MonitorProps, MonitorState> {
           ...this.state,
           loading: false
         })
-        this.props.finishLoading(this.props.server, this.state.healthy)
+        if (this.props.finishLoading)
+          this.props.finishLoading()
       })
   }
 
@@ -45,6 +48,8 @@ class Monitor extends Component<MonitorProps, MonitorState> {
   render() {
     // Update row class when finish loading
     let rowClass = 'health-row'
+    if (!this.props.isCatalyst)
+      rowClass += ' list-group-item'
     if (!this.state.loading) {
       if (this.state.healthy)
         rowClass += ' operational'
@@ -55,7 +60,7 @@ class Monitor extends Component<MonitorProps, MonitorState> {
     return (
       <li className={rowClass}>
         <div >
-          {this.props.server}
+          {this.props.name}
           { !this.state.loading ? <HealthInfo status={this.state.healthy ? 'operational' : 'unavailable'}/> : <></> } 
         </div>
       </li>

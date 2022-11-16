@@ -26,14 +26,14 @@ export const CatalystNetworks: FC = () => {
     setToggle(!open)
   }
 
-  function serverFinishedLoading(server: string, healthy: boolean) {
+  function serverFinishedLoading() {
     setLoadingBasedOnCatalysts()
   }
 
   function setLoadingBasedOnCatalysts() {
     if (loading) {
       let stillLoading = false
-      productiveServersRefs.forEach((ref, server) => {
+      productiveServersRefs.forEach((ref) => {
         const monitorLoading = ref.current?.state.loading ?? true
         stillLoading = stillLoading || monitorLoading
       })
@@ -62,7 +62,7 @@ export const CatalystNetworks: FC = () => {
       else
         setStatus('unavailable')
     }
-  }, [loading])
+  })
   
   // Set row css class depending on overall status
   let rowClass = 'list-group-item health-row'
@@ -80,7 +80,7 @@ export const CatalystNetworks: FC = () => {
       <Collapse in={open}>
         <ul>
           { Array.from(productiveServersRefs.entries()).map( ([server, ref]) => {
-            return <Monitor server={server} finishLoading={serverFinishedLoading} ref={ref} />
+            return <Monitor url={`https://${server}/about`} name={server} finishLoading={serverFinishedLoading} ref={ref} isCatalyst />
           })}
         </ul>
       </Collapse>

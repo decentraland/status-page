@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import Title from '../Title';
 import { CatalystNetworks } from './CatalystNetworks';
-import { HealthInfo } from './HealthInfo';
+import Monitor from './Monitor';
 
 const Healthchecks: FC = () => {
   return (
@@ -9,9 +9,9 @@ const Healthchecks: FC = () => {
       <Title title='System Status' />
       <ul className="list-group system-status">
         <CatalystNetworks />
-        <li className="list-group-item health-row">builder.decentraland.org <HealthInfo status='operational'/></li>
-        <li className="list-group-item health-row">market.decentraland.org <HealthInfo status='operational'/></li>
-        <li className="list-group-item health-row">synapse.decentraland.org <HealthInfo status='operational'/></li>
+        <Monitor url={'https://nft-api.decentraland.org/health/ready'} name={'market.decentraland.org'} />
+        <Monitor url={'https://builder-api.decentraland.org/v1/info'} name={'builder.decentraland.org'} />
+        <Monitor url={'https://synapse.decentraland.org/_matrix/client/versions'} name={'synapse.decentraland.org'} />
       </ul>
     </>
   );
