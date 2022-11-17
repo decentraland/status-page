@@ -20,9 +20,9 @@ export default function Navbar() {
         </NotMobile>
         <Mobile>
         <div className="dcl navbar-mobile-menu">
-            <a className="dcl navbar-logo" href="https://decentraland.org">
+            <Link className="dcl navbar-logo" to="https://decentraland.org">
               <Logo />
-            </a>
+            </Link>
             <Header
               size="small"
               className={`dcl active-page ${toggle ? 'caret-up' : 'caret-down'}`}
