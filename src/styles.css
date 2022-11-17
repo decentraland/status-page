@@ -46,7 +46,7 @@ ul {
   color: #736E7D;
 }
 
-.incidents .history-button {
+.history-button {
   color: #4183c4;
   text-decoration: underline;
 }
@@ -141,4 +141,8 @@ ul {
 
 .health-row .collapse > :last-child {
   padding-bottom: 0px;
+}
+
+.page-container > * {
+  margin-bottom: 20px;
 }

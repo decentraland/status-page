@@ -3,7 +3,7 @@ import Chart from "../components/onlines"
 
 export default function Metrics() {
   return (
-    <Container>
+    <Container className="page-container">
       <Chart />
     </Container>
   )

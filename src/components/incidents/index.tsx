@@ -73,7 +73,6 @@ function OpenIncidentsContainer(incidents: IncidentsResponse) {
       ) : (
         <span />
       )}
-      <Link to="/history" className="history-button" >Incidents History</Link>
     </Container>
   )
 }

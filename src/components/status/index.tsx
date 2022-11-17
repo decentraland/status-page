@@ -8,7 +8,7 @@ const StatusBar = styled.div`
   color: white;
   padding: 16px;
   border-radius: 3px;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
