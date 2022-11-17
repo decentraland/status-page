@@ -10,9 +10,9 @@ const Healthchecks: FC = () => {
       <Title title='System Status' />
       <ul className="list-group system-status">
         <CatalystNetworks />
-        <Monitor url={'https://nft-api.decentraland.org/health/ready'} name={'market.decentraland.org'} />
-        <Monitor url={'https://builder-api.decentraland.org/v1/info'} name={'builder.decentraland.org'} />
-        <Monitor url={'https://synapse.decentraland.org/_matrix/client/versions'} name={'synapse.decentraland.org'} />
+        <Monitor url={'https://nft-api.decentraland.org/health/ready'} name={'Marketplace'} />
+        <Monitor url={'https://builder-api.decentraland.org/v1/info'} name={'Builder'} />
+        <Monitor url={'https://synapse.decentraland.org/_matrix/client/versions'} name={'Chat'} />
       </ul>
     </Container>
   );
