@@ -8,7 +8,9 @@ export default function Status() {
     <Container className="page-container">
       <Incidents open={true} />
       <Healthchecks />
-      <Link to="/history" className="history-button" >Incidents History</Link>
+      <Container>
+        <Link to="/history" className="history-button" >Incidents History</Link>
+      </Container>
     </Container>
   )
 }
