@@ -1,3 +1,7 @@
+ul {
+  list-style-type: none;
+}
+
 .title {
   margin-bottom: 20px;
 }
@@ -42,7 +46,7 @@
   color: #736E7D;
 }
 
-.incidents .history-button {
+.history-button {
   color: #4183c4;
   text-decoration: underline;
 }
@@ -53,4 +57,92 @@
 
 .incidents .rca:hover {
   text-decoration: underline;
+}
+
+.catalysts-network::before {
+  content: ' ';
+  width: 12px;
+  height: 9px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: inline-block;
+  margin-right: 8px;
+  filter: var(--brightness);
+  background-image: url('./assets/arrow-down.svg');
+  transition: transform 0.25s ease;
+}
+
+.catalysts-network.caret-down::before {
+  transform: rotateZ(0deg) translateY(-1px);
+}
+
+.catalysts-network.caret-side::before {
+  transform: rotateZ(-90deg) translateY(1px);
+}
+
+.health-info {
+  float: right;
+}
+
+.health-info.operational {
+  color: #3da751;
+}
+
+.health-info.degraded {
+  color: #ffcc00;
+}
+
+.health-info.unavailable {
+  color: #d94430;
+}
+
+.health-row {
+  padding-top: 10px;
+  padding-bottom: 15px;
+  font-weight: 600;
+}
+
+.health-row div { 
+  display: inline;
+  padding: 5px;
+}
+
+.health-row::before {
+  content: ' ';
+  position: relative;
+  top: 4px;
+  width: 19px;
+  height: 19px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: inline-block;
+  margin-right: 8px;
+  transition: transform 0.25s ease;
+}
+
+.health-row.operational::before {
+  filter: brightness(0) saturate(100%) invert(55%) sepia(11%) saturate(2697%) hue-rotate(79deg) brightness(99%) contrast(72%);;
+  background-image: url('./assets/circle-check.svg');
+}
+
+.health-row.degraded::before {
+  filter: brightness(0) saturate(100%) invert(88%) sepia(28%) saturate(5597%) hue-rotate(360deg) brightness(103%) contrast(107%);
+  background-image: url('./assets/circle-exclamation.svg');
+}
+
+.health-row.unavailable::before {
+  filter: brightness(0) saturate(100%) invert(51%) sepia(96%) saturate(5466%) hue-rotate(347deg) brightness(91%) contrast(85%);
+  background-image: url('./assets/circle-xmark.svg');
+}
+
+.health-row .collapse > :first-child {
+  padding-top: 25px;
+}
+
+.health-row .collapse > :last-child {
+  padding-bottom: 0px;
+}
+
+.page-container > * {
+  margin-bottom: 20px;
 }

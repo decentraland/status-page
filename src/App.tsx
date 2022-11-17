@@ -12,13 +12,11 @@ function App() {
     <>
       <Navbar/>
       <Page2 isFullscreen>
-        <div className="container">
-          <Routes>
-            <Route path="/" element={<Status />} />
-            <Route path="/metrics" element={<Metrics />} />
-            <Route path="/history" element={<History />} />
-          </Routes>
-        </div>
+        <Routes>
+          <Route path="/" element={<Status />} />
+          <Route path="/metrics" element={<Metrics />} />
+          <Route path="/history" element={<History />} />
+        </Routes>
       </Page2>
       <Footer />
     </>
