@@ -1,10 +1,12 @@
 import { Container } from "decentraland-ui";
-import Chart from "../components/onlines"
+import HistoricalMetrics from "../components/metrics/historical-metrics";
+import LiveMetrics from "../components/metrics/live-metrics";
 
 export default function Metrics() {
   return (
     <Container className="page-container">
-      <Chart />
+      <LiveMetrics />
+      <HistoricalMetrics />
     </Container>
   )
 }

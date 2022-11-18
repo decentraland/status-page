@@ -17,6 +17,7 @@ import "chartjs-adapter-moment"
 import { Container} from "decentraland-ui"
 import Title from "../Title"
 import Subtitle from "../Subtitle"
+
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, TitleJS, Tooltip, Legend, TimeScale)
 
 type PrometheusQuery = {
@@ -31,22 +32,23 @@ type QueryResult = {
   values: any[]
 }
 
-// this needs to be async to be .then() able
+// Needs to be async to be .then() able
 async function transformData(input: PrometheusQuery): Promise<ChartData<"line", any[], string>> {
+  console.log(input)
   return {
     datasets: input.data.result.flatMap((set) => {
       return {
         borderWidth: 2,
         pointRadius: 0,
         fill: true,
-        borderColor: "#000",
+        borderColor: "#5388D8",
         backgroundColor: "#000",
         data: set.values.map(([timestamp, valueAsString]) => {
           return { x: timestamp * 1000, y: +valueAsString }
         }),
       }
     }),
-    labels: ["a"],
+    labels: ["a"]
   }
 }
 
@@ -55,21 +57,17 @@ async function fetchData() {
   return res.json()
 }
 
-export default function Stats() {
+export default function LiveMetrics() {
   const [data, setData] = useState<ChartData<"line", ScatterDataPoint[], string>>()
 
   useEffect(() => {
     fetchData().then(transformData).then(setData)
   }, [])
 
-
-  if (data)
-    data.datasets[0].borderColor = '#5388D8'
-
   return (
     <Container>
       <Title title='Live Metrics' paragraph="Below you can find live metrics related with the status of the platform."/>
-      <Subtitle subtitle='Online users' paragraph="Count of players walking around the Metaverse"/>
+      <Subtitle subtitle='Online Users' paragraph="Count of players walking around the Metaverse"/>
       <Line
         height={210}
         style={{marginBottom: 32}}
