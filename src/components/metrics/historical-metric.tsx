@@ -9,11 +9,10 @@ import {
   Legend,
   ChartData,
 } from "chart.js"
-import { useEffect, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import { Bar } from "react-chartjs-2"
 import "chartjs-adapter-moment"
 import { Container} from "decentraland-ui"
-import Title from "../Title"
 import Subtitle from "../Subtitle"
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, TitleJS, Tooltip, Legend, TimeScale)
@@ -37,7 +36,8 @@ async function transformData(input: CDNQuery): Promise<ChartData<"bar", any[], s
     datasets:[{
       borderWidth: 2,
       borderColor: "#5388D8",
-      backgroundColor: "#5388D8",
+      backgroundColor: "rgba(83, 136, 216, 0.6)",
+      barThickness: 60,
       data: input.values.map(([month, value]) => {
         return { x: months[new Date(month).getUTCMonth()], y: value }
       })
@@ -46,22 +46,24 @@ async function transformData(input: CDNQuery): Promise<ChartData<"bar", any[], s
   }
 }
 
-async function fetchData() {
-  const res = await fetch("https://cdn-data.decentraland.org/public/monthly/active-users.json")
+async function fetchData(name: string) {
+  const res = await fetch(`https://cdn-data.decentraland.org/public/monthly/${name}.json`)
   return res.json()
 }
 
-export default function HistoricalMetrics() {
+interface HistoricalMetricProps {
+  name: string
+}
+
+const HistoricalMetric: FC<HistoricalMetricProps> = ({name}) => {
   const [data, setData] = useState<ChartData<"bar", any[], string>>()
 
   useEffect(() => {
-    fetchData().then(transformData).then(setData)
-  }, [])
+    fetchData(name).then(transformData).then(setData)
+  }, [name])
 
   return (
-    <Container>
-      <Title title='Historical Metrics' paragraph="The graphs below show the last three months platform statistics and are automatically updated at the begining of each month."/>
-      <Subtitle subtitle='Active Users' paragraph="How many unique users have logged into Decentraland and moved out of their initial tile"/>
+    <>
       <Bar
         height={210}
         style={{marginBottom: 32}}
@@ -72,7 +74,7 @@ export default function HistoricalMetrics() {
           }
         }
         options={{
-          aspectRatio: 3,
+          aspectRatio: 1.5,
           responsive: true,
           interaction: {
             intersect: true,
@@ -82,6 +84,8 @@ export default function HistoricalMetrics() {
           } as any
         }}
       />
-    </Container>
+    </>
   )
 }
+
+export default HistoricalMetric
