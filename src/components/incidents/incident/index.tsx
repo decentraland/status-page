@@ -47,7 +47,7 @@ const Comment = styled.div`
   color: #1e1e1e;
 `
 
-const severities: Record<string, { color: string; backgroundColor: string; text: string; description: string }> = {
+export const severities: Record<string, { color: string; backgroundColor: string; text: string; description: string }> = {
   "sev-1": {
     color: "#42142A",
     backgroundColor: "#FF5F5D",
