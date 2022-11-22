@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { severities } from "../incidents/incident";
 import { IncidentsResponse } from "../types";
 import { statuses } from "./statuses";
 
@@ -29,8 +30,10 @@ export default function Status ({ incidents }: { incidents: IncidentsResponse | 
   if (incidents) {
     if (incidents.open && incidents.open.length > 0) {
       // There are open incidents
-      backgroundColor = statuses.outage.backgroundColor
       message = statuses.outage.message
+
+      // Match banner color with maximum severity color. Incidents are ordered by descending severity
+      backgroundColor = severities[incidents.open[0].severity].backgroundColor
     } else {
       // All systems operational
       backgroundColor = statuses.operational.backgroundColor

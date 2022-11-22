@@ -47,46 +47,42 @@ const Comment = styled.div`
   color: #1e1e1e;
 `
 
-const severities: Record<string, { color: string; backgroundColor: string; text: string; description: string }> = {
+export const severities: Record<string, { backgroundColor: string; text: string; description: string }> = {
   "sev-1": {
-    color: "#42142A",
-    backgroundColor: "#FF5F5D",
+    backgroundColor: "rgb(255,56,56)",
     text: "SEV-1",
     description: "Critical issues impacting more than 50% of the users",
   },
   "sev-2": {
-    color: "#81201D",
-    backgroundColor: "#FF8244",
+    backgroundColor: "rgb(255, 128, 0)",
     text: "SEV-2",
     description: " Critical system issue actively impacting a limited number of users",
   },
   "sev-3": {
-    color: "#81270B",
-    backgroundColor: "#FF9722",
+    backgroundColor: "rgb(255, 222, 22)",
     text: "SEV-3",
     description: "Stability or minor user impacting issue that requires immediate attention",
   },
   "sev-4": {
-    color: "#813400",
-    backgroundColor: "#FFB600",
+    backgroundColor: "rgb(255, 222, 22)",
     text: "SEV-4",
     description: "Minor issue requiring action but not affecting the ability to use the platform",
   },
   "sev-5": {
-    color: "#814A00",
-    backgroundColor: "#FFDD00",
+    backgroundColor: "rgb(255, 222, 22)",
     text: "SEV-5",
     description: "Cosmetic issues or bugs not affecting the users’ ability to use the platform",
   },
 }
 
 const Severity = styled.div`
-  color: ${(props: { severity: string }) => severities[props.severity].color};
+  color: white;
   background-color: ${(props: { severity: string }) => severities[props.severity].backgroundColor};
   padding: 5px 12px;
   border-radius: 16px;
   font-size: 13px;
   transition: 0.3s;
+  font-weight: bold;
 `
 
 const Date = styled.div`

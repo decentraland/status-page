@@ -85,15 +85,15 @@ ul {
 }
 
 .health-info.operational {
-  color: #3da751;
+  color: rgb(61, 167, 81);
 }
 
 .health-info.degraded {
-  color: #ffcc00;
+  color: rgb(255, 222, 22);
 }
 
 .health-info.unavailable {
-  color: #d94430;
+  color: rgb(255, 56, 56);
 }
 
 .health-row {

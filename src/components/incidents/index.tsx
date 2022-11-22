@@ -4,7 +4,6 @@ import Status from "../status"
 import { IncidentsResponse, IncidentType } from "../types"
 import { Container, Loader } from "decentraland-ui"
 import Title from "../Title"
-import { Link } from "react-router-dom"
 
 async function fetchStatus() {
   const apiKey = process.env.REACT_APP_CRASHBOT_API_KEY ?? ''
