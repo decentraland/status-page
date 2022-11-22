@@ -10,7 +10,7 @@ export default function Metrics() {
     <Container className="page-container">
       <LiveMetrics />
       <Container>
-        <Title title='Historical Metrics' paragraph="The graphs below show the last three months platform statistics and are automatically updated at the begining of each month."/>
+        <Title title='Historical Metrics' paragraph="The graphs below show the last three months platform statistics and are automatically updated at the beginning of each month."/>
         <NotMobile>
           <Row>
             <Col>
