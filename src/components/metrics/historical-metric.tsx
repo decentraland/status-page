@@ -38,8 +38,9 @@ async function transformData(input: CDNQuery): Promise<ChartData<"bar", any[], s
       borderColor: "#5388D8",
       backgroundColor: "rgba(83, 136, 216, 0.6)",
       barThickness: 60,
-      data: input.values.map(([month, value]) => {
-        return { x: months[new Date(month).getUTCMonth()], y: value }
+      data: input.values.map(([date, value]) => {
+        const moment: Date = new Date(date)
+        return { x: `${months[moment.getUTCMonth()]}, ${moment.getUTCFullYear()}`, y: value }
       })
     }],
     labels: []
