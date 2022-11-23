@@ -51,11 +51,11 @@ ul {
   text-decoration: underline;
 }
 
-.incidents .rca {
+.page-container a {
   color: #4183c4;
 }
 
-.incidents .rca:hover {
+.page-container a:hover {
   text-decoration: underline;
 }
 

@@ -12,17 +12,16 @@ export default function Navbar() {
         <NotMobile>
           <div className="dcl navbar-menu">
             <div className="ui secondary stackable menu">
-              <Link className="dcl navbar-logo" to="https://decentraland.org"><Logo /></Link>
+              <a className="dcl navbar-logo" href="https://decentraland.org" rel="noreferrer"><Logo /></a>
               <NavBarLink to="/">Decentraland Status</NavBarLink>
               <NavBarLink to="/metrics">Metrics</NavBarLink>
+              <NavBarLink to="/help">Help</NavBarLink>
             </div>
           </div>
         </NotMobile>
         <Mobile>
         <div className="dcl navbar-mobile-menu">
-            <Link className="dcl navbar-logo" to="https://decentraland.org">
-              <Logo />
-            </Link>
+            <a className="dcl navbar-logo" href="https://decentraland.org" rel="noreferrer"><Logo /></a>
             <Header
               size="small"
               className={`dcl active-page ${toggle ? 'caret-up' : 'caret-down'}`}
@@ -37,6 +36,7 @@ export default function Navbar() {
       <div className="mobile-menu">
         <NavBarLink to="/" onClick={switchToggle}>Decentraland Status</NavBarLink>
         <NavBarLink to="/metrics" onClick={switchToggle}>Metrics</NavBarLink>
+        <NavBarLink to="/help" onClick={switchToggle}>Help</NavBarLink>
       </div>
     </div>
   )
