@@ -15,6 +15,7 @@ export default function Navbar() {
               <Link className="dcl navbar-logo" to="https://decentraland.org"><Logo /></Link>
               <NavBarLink to="/">Decentraland Status</NavBarLink>
               <NavBarLink to="/metrics">Metrics</NavBarLink>
+              <NavBarLink to="/help">Help</NavBarLink>
             </div>
           </div>
         </NotMobile>
@@ -37,6 +38,7 @@ export default function Navbar() {
       <div className="mobile-menu">
         <NavBarLink to="/" onClick={switchToggle}>Decentraland Status</NavBarLink>
         <NavBarLink to="/metrics" onClick={switchToggle}>Metrics</NavBarLink>
+        <NavBarLink to="/help" onClick={switchToggle}>Help</NavBarLink>
       </div>
     </div>
   )
