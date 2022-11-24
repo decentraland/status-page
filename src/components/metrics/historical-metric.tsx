@@ -12,8 +12,6 @@ import {
 import { FC, useEffect, useState } from "react"
 import { Bar } from "react-chartjs-2"
 import "chartjs-adapter-moment"
-import { Container} from "decentraland-ui"
-import Subtitle from "../Subtitle"
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, TitleJS, Tooltip, Legend, TimeScale)
 
@@ -43,7 +41,7 @@ async function transformData(input: CDNQuery): Promise<ChartData<"bar", any[], s
         return { x: `${months[moment.getUTCMonth()]}, ${moment.getUTCFullYear()}`, y: value }
       })
     }],
-    labels: []
+    labels: [ ]
   }
 }
 
@@ -53,10 +51,11 @@ async function fetchData(name: string) {
 }
 
 interface HistoricalMetricProps {
-  name: string
+  name: string,
+  hour?: boolean
 }
 
-const HistoricalMetric: FC<HistoricalMetricProps> = ({name}) => {
+const HistoricalMetric: FC<HistoricalMetricProps> = ({name, hour}) => {
   const [data, setData] = useState<ChartData<"bar", any[], string>>()
 
   useEffect(() => {
@@ -82,7 +81,18 @@ const HistoricalMetric: FC<HistoricalMetricProps> = ({name}) => {
           },
           plugins: {
             legend: false
-          } as any
+          } as any,
+          scales: {
+            y: {
+              ticks: {
+                callback: function(val) {
+                  if (hour)
+                    return val + "h"
+                  return val
+                }
+              }
+            }
+          }
         }}
       />
     </>
