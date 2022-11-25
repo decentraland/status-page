@@ -5,7 +5,7 @@ export default function Help() {
     <Container className="page-container">
       <div className="title">
         <h1>Need Help?</h1>
-        <p>If you are experiencing a production issue preventing you to use the platform as expected and this is currently not reported on the status page, please raise the issue on <a href="https://discord.com/channels/417796904760639509/420166863776120832">Discord</a> under the <b>#help</b> support area and a community member will help to create the incident and upate the page.</p>
+        <p>If you are experiencing a production issue preventing you to use the platform as expected and this is currently not reported on the status page, please raise the issue on <a href="https://discord.com/channels/417796904760639509/420166863776120832">Discord</a> under the <b>#help</b> support area and a community member will help to create the incident and update the page.</p>
       </div>
       <div className="title">
         <h1>Did you find a bug?</h1>
