@@ -49,31 +49,31 @@ const Comment = styled.div`
 
 export const severities: Record<string, { backgroundColor: string; borderColor: string; text: string; description: string }> = {
   "sev-1": {
-    backgroundColor: "rgba(255,56,56,0.8)",
+    backgroundColor: "rgb(255,56,56)",
     borderColor: "rgb(230, 0, 0)",
     text: "SEV-1",
     description: "Critical issues impacting more than 50% of the users",
   },
   "sev-2": {
-    backgroundColor: "rgba(255, 128, 0, 0.8)",
+    backgroundColor: "rgb(255, 128, 0)",
     borderColor: "rgb(230, 115, 0)",
     text: "SEV-2",
     description: " Critical system issue actively impacting a limited number of users",
   },
   "sev-3": {
-    backgroundColor: "rgba(255, 222, 22, 1)",
+    backgroundColor: "rgb(255, 222, 22)",
     borderColor: "rgb(230, 199, 0)",
     text: "SEV-3",
     description: "Stability or minor user impacting issue that requires immediate attention",
   },
   "sev-4": {
-    backgroundColor: "rgba(255, 222, 22, 0.8)",
+    backgroundColor: "rgb(255, 222, 22)",
     borderColor: "rgb(230, 199, 0)",
     text: "SEV-4",
     description: "Minor issue requiring action but not affecting the ability to use the platform",
   },
   "sev-5": {
-    backgroundColor: "rgba(255, 222, 22, 0.8)",
+    backgroundColor: "rgb(255, 222, 22)",
     borderColor: "rgb(230, 199, 0)",
     text: "SEV-5",
     description: "Cosmetic issues or bugs not affecting the users’ ability to use the platform",
