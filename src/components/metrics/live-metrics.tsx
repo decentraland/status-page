@@ -100,9 +100,8 @@ export default function LiveMetrics() {
             },
             y: {
               min: 0,
-            },
-            
-          },
+            }  
+          }
         }}
       />
     </Container>
