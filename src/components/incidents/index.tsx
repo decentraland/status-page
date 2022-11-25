@@ -78,16 +78,16 @@ function OpenIncidentsContainer(incidents: IncidentsResponse) {
 
 function IncidentHistoryContainer(incidents: IncidentsResponse) {
   return (
-    <Container className="incidents">
+    <div className="incidents">
       {incidents.closed.length > 0 ? (
         <>
-          <Title title="Incidents History" />
+          <Title title="Incidents Details" />
           <IncidentRows incidents={incidents.closed} />
         </>
       ) : (
         <span />
       )}
-    </Container>
+    </div>
   )
 }
 
