@@ -8,7 +8,7 @@ import Title from "../components/Title";
 export default function Metrics() {
   return (
     <Container className="page-container">
-      {/* <LiveMetrics /> */}
+      <LiveMetrics />
       <Container>
         <Title title='Historical Metrics' paragraph="The graphs below show the last three months platform statistics and are automatically updated at the beginning of each month."/>
         <NotMobile>
