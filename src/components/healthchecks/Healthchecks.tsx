@@ -15,6 +15,7 @@ const Healthchecks: FC = () => {
         <Monitor url={'https://synapse.decentraland.org/_matrix/client/versions'} name={'Chat'} />
         <Monitor url={'https://places.decentraland.org/api/status'} name={'Places'} />        
         <Monitor url={'https://events.decentraland.org/api/status'} name={'Events'} />        
+        <Monitor url={'https://social-service.decentraland.org/health/live'} name={'Social Service'} />        
       </ul>
     </Container>
   );
