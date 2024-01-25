@@ -62,7 +62,7 @@ export const CatalystNetworks: FC = () => {
       else
         setStatus('unavailable')
     }
-  })
+  }, [loading])
   
   // Set row css class depending on overall status
   let rowClass = 'list-group-item health-row'
@@ -79,8 +79,8 @@ export const CatalystNetworks: FC = () => {
       </div>
       <Collapse in={open}>
         <ul>
-          { Array.from(productiveServersRefs.entries()).map( ([server, ref]) => {
-            return <Monitor url={`https://${server}/about`} name={server} finishLoading={serverFinishedLoading} ref={ref} isCatalyst />
+          { Array.from(productiveServersRefs.entries()).map(([server, ref]) => {
+            return <Monitor url={`https://${server}/about`} name={server} key={server} finishLoading={serverFinishedLoading} ref={ref} isCatalyst />
           })}
         </ul>
       </Collapse>
