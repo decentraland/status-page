@@ -79,8 +79,8 @@ export const CatalystNetworks: FC = () => {
       </div>
       <Collapse in={open}>
         <ul>
-          { Array.from(productiveServersRefs.entries()).map( ([server, ref]) => {
-            return <Monitor url={`https://${server}/about`} name={server} finishLoading={serverFinishedLoading} ref={ref} isCatalyst />
+          { Array.from(productiveServersRefs.entries()).map(([server, ref]) => {
+            return <Monitor url={`https://${server}/about`} name={server} key={server} finishLoading={serverFinishedLoading} ref={ref} isCatalyst />
           })}
         </ul>
       </Collapse>
