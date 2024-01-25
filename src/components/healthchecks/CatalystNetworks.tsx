@@ -62,7 +62,7 @@ export const CatalystNetworks: FC = () => {
       else
         setStatus('unavailable')
     }
-  })
+  }, [loading])
   
   // Set row css class depending on overall status
   let rowClass = 'list-group-item health-row'
