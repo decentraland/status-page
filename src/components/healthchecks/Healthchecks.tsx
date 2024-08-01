@@ -21,6 +21,7 @@ const Healthchecks: FC = () => {
         <Monitor url={'https://dcl-lists.decentraland.org/status'} name={'Decentraland Lists'} />    
         <Monitor url={'https://asset-bundle-converter.decentraland.org/health/live'} name={'Asset Bundle Converter'} />
         {/* <Monitor url={'https://auth-api.decentraland.org/health/ready'} name={'Auth Server'} />            */}
+        <Monitor url={'https://decentraland.org'} name={'Decentraland Domain'} />
       </ul>
     </Container>
   );
