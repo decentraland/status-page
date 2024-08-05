@@ -22,7 +22,7 @@ const Healthchecks: FC = () => {
         <Monitor url={'https://asset-bundle-converter.decentraland.org/health/live'} name={'Asset Bundle Converter WebGL'} />
         <Monitor url={'https://asset-bundle-converter-windows.decentraland.org/health/live'} name={'Asset Bundle Converter Windows'} />
         <Monitor url={'https://asset-bundle-converter-mac.decentraland.org/health/live'} name={'Asset Bundle Converter OS X'} />
-        {/* <Monitor url={'https://auth-api.decentraland.org/health/ready'} name={'Auth Server'} />            */}
+        <Monitor url={'https://auth-api.decentraland.org/health/ready'} name={'Auth Server'} />
         <Monitor url={'https://decentraland.org'} name={'Decentraland Domain'} />
       </ul>
     </Container>
