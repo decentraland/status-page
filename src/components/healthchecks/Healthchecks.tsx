@@ -25,7 +25,7 @@ const Healthchecks: FC = () => {
         <Monitor url={'https://badges.decentraland.org/status'} name={'Badges Server'} />
         <Monitor url={'https://exploration-games.decentraland.org/api/status'} name={'Exploration Games Server'} />
         <Monitor url={'https://auth-api.decentraland.org/health/ready'} name={'Auth Server'} />
-        <Monitor url={'https://camera-reel-service.decentraland.org//health/live'} name={'Camera Reel Service'} />
+        <Monitor url={'https://camera-reel-service.decentraland.org/health/live'} name={'Camera Reel Service'} />
         <Monitor url={'https://decentraland.org'} name={'Decentraland Domain'} />
       </ul>
     </Container>
