@@ -22,10 +22,13 @@ const Healthchecks: FC = () => {
         <Monitor url={'https://asset-bundle-converter.decentraland.org/health/live'} name={'Asset Bundle Converter WebGL'} />
         <Monitor url={'https://asset-bundle-converter-windows.decentraland.org/health/live'} name={'Asset Bundle Converter Windows'} />
         <Monitor url={'https://asset-bundle-converter-mac.decentraland.org/health/live'} name={'Asset Bundle Converter OS X'} />
-        <Monitor url={'https://badges.decentraland.org/status'} name={'Badges Server'} />
+        <Monitor url={'https://badges.decentraland.org/status'} name={'Badges Server'} /> { /* Missing Badges Processor */}
         <Monitor url={'https://exploration-games.decentraland.org/api/status'} name={'Exploration Games Server'} />
         <Monitor url={'https://auth-api.decentraland.org/health/ready'} name={'Auth Server'} />
         <Monitor url={'https://camera-reel-service.decentraland.org/health/live'} name={'Camera Reel Service'} />
+        <Monitor url={'https://events-notifier.decentraland.org/health/live'} name={'Events Notifier'} />
+        <Monitor url={'https://squid-management-server.decentraland.org/health/live'} name={'Squid Management Server'} /> { /* Missing servers Core, A, and B */}
+        <Monitor url={'https://worlds-content-server.decentraland.org/health/live'} name={'Worlds Content Server'} />
         <Monitor url={'https://decentraland.org'} name={'Decentraland Domain'} />
       </ul>
     </Container>
