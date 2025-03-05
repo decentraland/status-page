@@ -28,7 +28,6 @@ const Healthchecks: FC = () => {
         <Monitor url={'https://auth-api.decentraland.org/health/ready'} name={'Auth Server'} />
         <Monitor url={'https://camera-reel-service.decentraland.org/health/live'} name={'Camera Reel Service'} />
         <Monitor url={'https://events-notifier.decentraland.org/health/live'} name={'Events Notifier'} />
-        <Monitor url={'https://squid-management-server.decentraland.org/health/live'} name={'Squid Management Server'} /> { /* Missing servers Core, A, and B */}
         <Monitor url={'https://worlds-content-server.decentraland.org/health/live'} name={'Worlds Content Server'} />
         <Monitor url={'https://social-service-ea.decentraland.org/health/live'} name={'Social Service EA'} />
         <Monitor url={'https://decentraland.org'} name={'Decentraland Domain'} />
