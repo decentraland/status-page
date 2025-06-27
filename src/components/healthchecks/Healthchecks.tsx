@@ -12,7 +12,7 @@ const Healthchecks: FC = () => {
         <CatalystNetworks />                
         <Monitor url={'https://comms-gatekeeper.decentraland.org/status'} name={'Communications Gate Keeper'} />
         <Monitor url={'https://notifications.decentraland.org/status'} name={'Notifications System'} />
-        <Monitor url={'https://nft-api.decentraland.org/health/ready'} name={'Marketplace'} />
+        <Monitor url={'https://marketplace-api.decentraland.org/health/ready'} name={'Marketplace'} />
         <Monitor url={'https://builder-api.decentraland.org/v1/info'} name={'Builder'} />
         <Monitor url={'https://synapse.decentraland.org/_matrix/client/versions'} name={'Chat'} />
         <Monitor url={'https://api.decentraland.org/v1/map.png'} name={'Atlas Server'} />
