@@ -20,6 +20,7 @@ const Healthchecks: FC = () => {
         <Monitor url={'https://events.decentraland.org/api/status'} name={'Events'} />
         <Monitor url={'https://rewards.decentraland.org/api/status'} name={'Rewards'} />
         <Monitor url={'https://dcl-lists.decentraland.org/status'} name={'Decentraland Lists'} />    
+        <Monitor url={'https://asset-bundle-registry.decentraland.org/health/live'} name={'Asset Bundle Registry'} />
         <Monitor url={'https://asset-bundle-converter.decentraland.org/health/live'} name={'Asset Bundle Converter WebGL'} />
         <Monitor url={'https://asset-bundle-converter-windows.decentraland.org/health/live'} name={'Asset Bundle Converter Windows'} />
         <Monitor url={'https://asset-bundle-converter-mac.decentraland.org/health/live'} name={'Asset Bundle Converter OS X'} />
