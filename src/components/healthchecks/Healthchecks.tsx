@@ -14,7 +14,6 @@ const Healthchecks: FC = () => {
         <Monitor url={'https://notifications.decentraland.org/status'} name={'Notifications System'} />
         <Monitor url={'https://marketplace-api.decentraland.org/health/ready'} name={'Marketplace'} />
         <Monitor url={'https://builder-api.decentraland.org/v1/info'} name={'Builder'} />
-        <Monitor url={'https://synapse.decentraland.org/_matrix/client/versions'} name={'Chat'} />
         <Monitor url={'https://api.decentraland.org/v1/map.png'} name={'Atlas Server'} />
         <Monitor url={'https://places.decentraland.org/api/status'} name={'Places'} />
         <Monitor url={'https://events.decentraland.org/api/status'} name={'Events'} />
