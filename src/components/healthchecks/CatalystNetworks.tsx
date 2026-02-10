@@ -1,5 +1,6 @@
-import { FC, useState, useEffect, useRef } from "react"
+import { FC, useState, useEffect, useRef, useMemo } from "react"
 import { Collapse } from "react-bootstrap"
+import { catalystServers } from "../../config/environment"
 import { HealthInfo } from "./HealthInfo"
 import Monitor from "./Monitor"
 
@@ -8,19 +9,21 @@ export const CatalystNetworks: FC = () => {
   const [loading, setLoading] = useState<boolean>(true)
   const [status, setStatus] = useState<string>()
 
-  const productiveServersRefs = new Map([
-    ["peer-ec1.decentraland.org", useRef<Monitor>(null)], // DCL - US East 1
-    ["peer-ec2.decentraland.org", useRef<Monitor>(null)], // DCL - US East 2
-    ["peer-wc1.decentraland.org", useRef<Monitor>(null)], // DCL - US West
-    ["peer-eu1.decentraland.org", useRef<Monitor>(null)], // DCL - EU
-    ["peer-ap1.decentraland.org", useRef<Monitor>(null)], // DCL - AP1
-    ["interconnected.online", useRef<Monitor>(null)], // Esteban
-    ["peer.decentral.io", useRef<Monitor>(null)], // Baus
-    ["peer.melonwave.com", useRef<Monitor>(null)], // Ari
-    ["peer.kyllian.me", useRef<Monitor>(null)], // Kyllian
-    ["peer.uadevops.com", useRef<Monitor>(null)], // SFox
-    ["peer.dclnodes.io", useRef<Monitor>(null)] // DSM
-  ])
+  // Create refs for each catalyst server
+  const refs = useRef<Map<string, React.RefObject<Monitor>>>(new Map())
+  
+  // Initialize refs map (only once since catalystServers is static)
+  const serversWithRefs = useMemo(() => {
+    return catalystServers.map(server => {
+      if (!refs.current.has(server.hostname)) {
+        refs.current.set(server.hostname, { current: null })
+      }
+      return {
+        ...server,
+        ref: refs.current.get(server.hostname)!
+      }
+    })
+  }, [])
 
   function switchToggle() {
     setToggle(!open)
@@ -33,7 +36,7 @@ export const CatalystNetworks: FC = () => {
   function setLoadingBasedOnCatalysts() {
     if (loading) {
       let stillLoading = false
-      productiveServersRefs.forEach((ref) => {
+      serversWithRefs.forEach(({ ref }) => {
         const monitorLoading = ref.current?.state.loading ?? true
         stillLoading = stillLoading || monitorLoading
       })
@@ -45,7 +48,7 @@ export const CatalystNetworks: FC = () => {
     // Returns the number of unavailable catalysts
     function getNumberOfUnavailableCatalysts() {
       let unavailable = 0
-      productiveServersRefs.forEach((ref) => {
+      serversWithRefs.forEach(({ ref }) => {
         if (!ref.current?.state.healthy)
           unavailable++
       })
@@ -62,7 +65,7 @@ export const CatalystNetworks: FC = () => {
       else
         setStatus('unavailable')
     }
-  }, [loading])
+  }, [loading, serversWithRefs])
   
   // Set row css class depending on overall status
   let rowClass = 'list-group-item health-row'
@@ -79,8 +82,8 @@ export const CatalystNetworks: FC = () => {
       </div>
       <Collapse in={open}>
         <ul>
-          { Array.from(productiveServersRefs.entries()).map(([server, ref]) => {
-            return <Monitor url={`https://${server}/about`} name={server} key={server} finishLoading={serverFinishedLoading} ref={ref} isCatalyst />
+          { serversWithRefs.map(({ hostname, ref }) => {
+            return <Monitor url={`https://${hostname}/about`} name={hostname} key={hostname} finishLoading={serverFinishedLoading} ref={ref} isCatalyst />
           })}
         </ul>
       </Collapse>

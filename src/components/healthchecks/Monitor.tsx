@@ -1,4 +1,5 @@
 import { Component } from "react"
+import { OverlayTrigger, Tooltip } from "react-bootstrap"
 import { HealthInfo } from "./HealthInfo"
 
 interface MonitorProps {
@@ -57,10 +58,39 @@ class Monitor extends Component<MonitorProps, MonitorState> {
         rowClass += ' unavailable'
     }
 
+    const urlTooltip = (
+      <Tooltip id={`tooltip-${this.props.name}`}>
+        {this.props.url}
+      </Tooltip>
+    )
+
     return (
       <li className={rowClass}>
-        <div >
+        <div>
           {this.props.name}
+          <OverlayTrigger placement="top" overlay={urlTooltip}>
+            <a 
+              href={this.props.url} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              style={{ marginLeft: '6px', display: 'inline-block', verticalAlign: 'middle' }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <svg 
+                width="14" 
+                height="14" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="#999" 
+                strokeWidth="2"
+                style={{ cursor: 'pointer' }}
+              >
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </a>
+          </OverlayTrigger>
           { !this.state.loading ? <HealthInfo status={this.state.healthy ? 'operational' : 'unavailable'}/> : <></> } 
         </div>
       </li>
