@@ -53,12 +53,10 @@ export const baseDomain = `decentraland.${domainSuffix}`;
 export const catalystServers = isProduction
   ? [
       { hostname: 'peer-ec1.decentraland.org', label: 'DCL - US East 1' },
-      { hostname: 'peer-ec2.decentraland.org', label: 'DCL - US East 2' },
-      { hostname: 'peer-wc1.decentraland.org', label: 'DCL - US West' },
+      { hostname: 'peer-ec2.decentraland.org', label: 'DCL - SP' },      
       { hostname: 'peer-eu1.decentraland.org', label: 'DCL - EU' },
       { hostname: 'peer-ap1.decentraland.org', label: 'DCL - AP1' },
-      { hostname: 'interconnected.online', label: 'Esteban' },
-      { hostname: 'peer.decentral.io', label: 'Baus' },
+      { hostname: 'interconnected.online', label: 'Esteban' },      
       { hostname: 'peer.melonwave.com', label: 'Ari' },
       { hostname: 'peer.kyllian.me', label: 'Kyllian' },
       { hostname: 'peer.uadevops.com', label: 'SFox' },
