@@ -7,6 +7,14 @@ interface MonitorProps {
   name: string
   finishLoading?: () => void
   isCatalyst?: boolean
+  /**
+   * Use `mode: 'no-cors'` for the health check. The response is opaque so we
+   * can't read its status — any successful resolution is treated as healthy.
+   * Useful for endpoints that don't expose CORS headers (e.g. the public
+   * `decentraland.org` landing). Degrades the check from "responded 200" to
+   * "server reachable", so reserve it for monitors where CORS can't be added.
+   */
+  noCors?: boolean
 }
 
 export interface MonitorState {
@@ -24,11 +32,15 @@ class Monitor extends Component<MonitorProps, MonitorState> {
   }
 
   async getServerHealth() {
-    fetch(this.props.url)
+    const init: RequestInit = this.props.noCors ? { mode: 'no-cors' } : {}
+    fetch(this.props.url, init)
       .then((res) => {
+        // With `mode: 'no-cors'` the response is opaque (`res.status === 0`),
+        // so we can't read the real status — any resolution is treated as
+        // healthy. Without no-cors we keep the strict 200 check.
         this.setState({
           ...this.state,
-          healthy: res.status === 200
+          healthy: this.props.noCors ? true : res.status === 200
         })
       })
       .catch(console.log)
