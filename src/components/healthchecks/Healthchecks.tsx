@@ -31,7 +31,7 @@ const Healthchecks: FC = () => {
         <Monitor url={`https://events-notifier.${baseDomain}/health/live`} name={'Events Notifier'} />
         <Monitor url={`https://worlds-content-server.${baseDomain}/health/live`} name={'Worlds Content Server'} />
         <Monitor url={`https://social-service-ea.${baseDomain}/health/live`} name={'Social Service EA'} />
-        <Monitor url={`https://${baseDomain}`} name={'Decentraland Domain'} />
+        <Monitor url={`https://${baseDomain}`} name={'Decentraland Domain'} noCors />
       </ul>
     </Container>
   );
