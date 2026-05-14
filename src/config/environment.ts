@@ -58,7 +58,6 @@ export const catalystServers = isProduction
       { hostname: 'peer-ap1.decentraland.org', label: 'DCL - AP1' },
       { hostname: 'interconnected.online', label: 'Esteban' },      
       { hostname: 'peer.melonwave.com', label: 'Ari' },
-      { hostname: 'peer.kyllian.me', label: 'Kyllian' },
       { hostname: 'peer.uadevops.com', label: 'SFox' },
       { hostname: 'peer.dclnodes.io', label: 'DSM' },
     ]
