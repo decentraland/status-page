@@ -21,7 +21,6 @@ const Healthchecks: FC = () => {
         <Monitor url={`https://rewards.${baseDomain}/api/status`} name={'Rewards'} />
         <Monitor url={`https://dcl-lists.${baseDomain}/status`} name={'Decentraland Lists'} />    
         <Monitor url={`https://asset-bundle-registry.${baseDomain}/health/live`} name={'Asset Bundle Registry'} />
-        <Monitor url={`https://asset-bundle-converter.${baseDomain}/health/live`} name={'Asset Bundle Converter WebGL'} />
         <Monitor url={`https://asset-bundle-converter-windows.${baseDomain}/health/live`} name={'Asset Bundle Converter Windows'} />
         <Monitor url={`https://asset-bundle-converter-mac.${baseDomain}/health/live`} name={'Asset Bundle Converter OS X'} />
         <Monitor url={`https://badges.${baseDomain}/status`} name={'Badges Server'} /> { /* Missing Badges Processor */}
