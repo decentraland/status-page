@@ -62,6 +62,4 @@ export const catalystServers = isProduction
     ]
   : [
       { hostname: 'peer.decentraland.zone', label: 'DCL - Peer' },
-      { hostname: 'peer-ue-2.decentraland.zone', label: 'DCL - US East 2' },
-      { hostname: 'peer-ap1.decentraland.zone', label: 'DCL - AP1' },
     ];
