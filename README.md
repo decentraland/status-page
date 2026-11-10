@@ -4,7 +4,7 @@ This repository contains the front end for the Decentraland Status page publishe
 
 ## Build and Run
 
-Just run clone the repo and run `yarn install` and `yarn start`
+Clone the repo, then run `npm install` and `npm start` (Vite dev server on http://localhost:3000). Use `npm run build` for a production build in `build/`. Node 22 is required (see `.nvmrc`).
 
 ## Deploy 
 

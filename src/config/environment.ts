@@ -10,10 +10,10 @@ type Environment = 'production' | 'development';
 
 function getEnvironment(): Environment {
   // Check environment variable first (set in Cloudflare Pages)
-  if (process.env.REACT_APP_ENV === 'development') {
+  if (import.meta.env.REACT_APP_ENV === 'development') {
     return 'development';
   }
-  if (process.env.REACT_APP_ENV === 'production') {
+  if (import.meta.env.REACT_APP_ENV === 'production') {
     return 'production';
   }
 
