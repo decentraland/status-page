@@ -6,8 +6,8 @@ import { Container, Loader } from "decentraland-ui"
 import Title from "../Title"
 
 async function fetchStatus() {
-  const apiKey = process.env.REACT_APP_CRASHBOT_API_KEY ?? ''
-  const listURL = process.env.REACT_APP_LIST_URL ?? 'https://crashbot.decentraland.systems'
+  const apiKey = import.meta.env.REACT_APP_CRASHBOT_API_KEY ?? ''
+  const listURL = import.meta.env.REACT_APP_LIST_URL ?? 'https://crashbot.decentraland.systems'
   const res = await fetch(`${listURL}/list`, {
     method: "GET",
     headers: {
