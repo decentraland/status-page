@@ -20,8 +20,6 @@ const Healthchecks: FC = () => {
         <Monitor url={`https://events.${baseDomain}/api/status`} name={'Events'} />
         <Monitor url={`https://rewards.${baseDomain}/api/status`} name={'Rewards'} />
         <Monitor url={`https://dcl-lists.${baseDomain}/status`} name={'Decentraland Lists'} />    
-        <Monitor url={`https://asset-bundle-registry.${baseDomain}/health/live`} name={'Asset Bundle Registry'} />
-        <Monitor url={`https://asset-bundle-registry-abgen.${baseDomain}/health/live`} name={'Asset Bundle Generator (abgen)'} />
         <Monitor url={`https://badges.${baseDomain}/status`} name={'Badges Server'} /> { /* Missing Badges Processor */}
         <Monitor url={`https://exploration-games.${baseDomain}/api/status`} name={'Exploration Games Server'} />
         <Monitor url={`https://auth-api.${baseDomain}/health/ready`} name={'Auth Server'} />
